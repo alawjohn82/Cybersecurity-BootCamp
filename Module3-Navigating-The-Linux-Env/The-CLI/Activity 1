@@ -1,0 +1,19 @@
+Module 3 Day 3 Activity File: find Your Way
+
+In this activity, you will continue in your role as a security analyst at Candy Corp.
+Your manager has identified why PeanutButtery.net was targeted: Henry had hidden a secret recipe for a revolutionary candy within the file system, and Sugar Corp was trying to find it.
+Your manager at Candy Corp needs you to search through the files and file directories of the PeanutButtery.net server to find the hidden recipes in its file system.
+You are tasked with scanning the directories of the PeanutButtery.net site to uncover the secret recipes hidden by Henry.
+
+Instructions
+
+Using only the command line, complete the following tasks in the /03-student/day2/finding_your_way/ folder in your Ubuntu virtual machine:
+Navigate into the PeanutButtery.net directory.
+1- Find all directories that have the word "secret" in their directory name.
+2- Find all files that have the word "recipe" in their file name.
+
+Bonus
+Your manager believes the recipe is for peanut candy and would like you to narrow your search to include only those recipes.
+Use a single command to find all the files that have the words "recipe" and "peanut" in their name.
+Hint: Research how to use the AND functionality with the find command.
+
