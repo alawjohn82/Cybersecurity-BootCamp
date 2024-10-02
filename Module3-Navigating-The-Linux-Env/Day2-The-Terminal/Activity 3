@@ -21,3 +21,75 @@ Use redirection with the new command to place the total number of IP addresses f
 Hint: Use a wildcard, such as *, to run this with a single command.
 
 Answer:
+
+1. Navigate to the learning_new_commands folder:
+
+cd /03-student/day2/learning_new_commands/
+2. Use man wc to research the wc (word count) command:
+You can learn more about the wc command by running:
+
+man wc
+The wc command can count the number of lines, words, and characters in a file. In this case, we will focus on counting words since IP addresses are separated by spaces.
+
+wc -w <file> counts the number of words (in this case, IP addresses) in the file.
+3. Count the total number of IP addresses (words) in each log file:
+Use the wc -w command to count the total number of words (IP addresses) in each log file. Assuming the log files are named website1.log, website2.log, etc., run the following commands:
+
+wc -w website1.log
+wc -w website2.log
+wc -w website3.log
+This will give you the total number of IP addresses (words) for each file.
+
+4. Determine which website had the most network connections:
+After running the wc -w command on each log file, compare the results to find which website has the highest number of IP addresses (connections). The website with the most words in its log file is the likely target of the attack.
+
+5. Example:
+If the output of the wc -w command looks like this:
+
+1000 website1.log
+1500 website2.log
+800 website3.log
+Then website2.log had the most network connections, with 1500 IP addresses.
+
+Summary of Commands:
+
+cd /03-student/day2/learning_new_commands/
+man wc
+wc -w website1.log
+wc -w website2.log
+wc -w website3.log
+This will help you find which website was the likely target of the attack based on the number of IP addresses in each log file.
+
+Bonus answer:
+
+1. Navigate to the learning_new_commands folder:
+
+cd /03-student/day2/learning_new_commands/
+2. Use the wc -w command with a wildcard and redirect the output to Connections_by_website:
+You can use a wildcard (*.log) to match all the log files and redirect the output to the Connections_by_website file:
+
+
+wc -w *.log > Connections_by_website
+This command will:
+
+Use wc -w to count the total number of words (IP addresses) in all files ending with .log.
+Redirect (>) the output to a file named Connections_by_website.
+3. Verify the contents of the Connections_by_website file:
+To check the results, use the cat command:
+
+cat Connections_by_website
+This will display the number of IP addresses for each website along with the log file names.
+
+Example Output:
+After running the command, if you check Connections_by_website, it might look something like this:
+
+
+1000 website1.log
+1500 website2.log
+800 website3.log
+Summary of Commands:
+
+cd /03-student/day2/learning_new_commands/
+wc -w *.log > Connections_by_website
+cat Connections_by_website
+This will provide the total number of IP addresses for each website and store them in the Connections_by_website file.
