@@ -20,3 +20,59 @@ The number of times Sugar's IP is found in this file
 4- Move the two new evidence files into the directory, Sugar_evidence.
 5- Combine them both into a single file, called Sugar_evidence_for_authorities.
 
+ANSWER:
+
+Step 1: Create the Sugar_evidence Directory
+Navigate to the /03-student/day2/Gathering_Evidence/ folder:
+
+cd /03-student/day2/Gathering_Evidence/
+Create the Sugar_evidence directory:
+
+mkdir Sugar_evidence
+Step 2: List and Count Emails Referencing "Sugar"
+Navigate to the email directory that contains the email archive:
+
+
+cd email
+Search for emails containing the word "Sugar" and save the output to a new file called sugar_email_evidence:
+
+
+grep -i "Sugar" * > ../sugar_email_evidence
+The -i option makes the search case-insensitive.
+* means search in all files.
+Count the number of emails that reference "Sugar" and append the result to the sugar_email_evidence file:
+
+
+grep -i "Sugar" * | wc -l >> ../sugar_email_evidence
+wc -l counts the lines, which represent the number of emails referencing "Sugar".
+>> appends the result to the file.
+Step 3: Extract Web Logs Containing Sugar's IP Address
+Navigate to the web_logs directory:
+
+
+cd ../web_logs
+Search for logs containing Sugar's IP address (13.16.23.234) and save the result to a new file called sugar_web_evidence:
+
+grep "13.16.23.234" * > ../sugar_web_evidence
+Count the number of occurrences of Sugar’s IP and append the result to the file:
+
+
+grep "13.16.23.234" * | wc -l >> ../sugar_web_evidence
+Step 4: Move Files into the Sugar_evidence Directory
+Move both evidence files (sugar_email_evidence and sugar_web_evidence) to the Sugar_evidence directory:
+
+mv ../sugar_email_evidence ../sugar_web_evidence ../Sugar_evidence/
+Step 5: Combine the Two Files into One
+Navigate into the Sugar_evidence directory:
+
+cd ../Sugar_evidence
+Combine both files into a single file called Sugar_evidence_for_authorities:
+
+cat sugar_email_evidence sugar_web_evidence > Sugar_evidence_for_authorities
+
+
+
+
+
+
+
