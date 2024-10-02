@@ -19,6 +19,35 @@ Using only the command line, complete the following tasks from within the /03-st
 6- Display (list) all the files created.
 7- Clear the terminal window.
 
-Hint: Don't be afraid to ask your neighbor or TA for help if you're having trouble with a command.
+Answer:
+
+1. Create a folder called Internal_Investigation_Employee_A:
+
+mkdir Internal_Investigation_Employee_A
+2. Navigate into the Internal_Investigation_Employee_A folder:
+
+cd Internal_Investigation_Employee_A
+3. Print the working directory to confirm you are in the correct place:
+
+pwd
+This should output the path, confirming you are inside the Internal_Investigation_Employee_A folder.
+
+4. Create the files email_evidence, log_evidence, and web_evidence:
+
+touch email_evidence log_evidence web_evidence
+
+5. Delete the file web_evidence:
+
+rm web_evidence
+
+6. Display (list) all the files created:
+
+ls
+This should list the remaining files: email_evidence and log_evidence.
+
+7. Clear the terminal window:
+
+clear
+
 
 
