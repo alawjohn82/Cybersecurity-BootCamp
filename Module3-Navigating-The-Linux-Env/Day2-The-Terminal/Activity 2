@@ -21,3 +21,115 @@ Hint: Try using the file command to see what the file type actually is.
 Open each file with an image program and note what is in the picture.
 Hint: Try opening files from the command line with gimp <file_name>.
 
+Answer:
+
+1. Navigate to the find_kit_cat_burglar directory:
+
+cd /path/to/find_kit_cat_burglar
+(Replace /path/to/ with the actual path to the find_kit_cat_burglar directory.)
+
+2. Navigate to the subdirectories for Ruth and Henry:
+
+cd Ruth
+
+ls
+(List the files to identify any evidence files.)
+
+After checking Ruth's files, navigate back and repeat the process for Henry:
+
+cd ../Henry
+
+ls
+3. Identify the evidence files:
+Look for files that can be considered evidence (these might be documents, logs, etc.). Note the names of these files.
+
+4. Create a new directory called Evidence_for_authorities:
+Navigate back to the find_kit_cat_burglar directory and create the new directory:
+
+
+cd ..
+mkdir Evidence_for_authorities
+5. Copy all the evidence files into the Evidence_for_authorities folder:
+Use the cp command to copy the files you identified as evidence:
+
+
+cp Ruth/evidence_file1.txt Evidence_for_authorities/
+cp Ruth/evidence_file2.txt Evidence_for_authorities/
+cp Henry/evidence_file3.txt Evidence_for_authorities/
+cp Henry/evidence_file4.txt Evidence_for_authorities/
+(Replace evidence_file1.txt, evidence_file2.txt, etc., with the actual filenames.)
+
+6. Concatenate the files into a single file called Candy-evidence.txt:
+Now, navigate into the Evidence_for_authorities folder and concatenate the files:
+
+
+cd Evidence_for_authorities
+cat evidence_file1.txt evidence_file2.txt evidence_file3.txt evidence_file4.txt > Candy-evidence.txt
+(Replace the filenames with the actual evidence files you copied.)
+
+7. Verify the concatenation:
+Check the contents of the Candy-evidence.txt to ensure it has been created successfully:
+
+
+cat Candy-evidence.txt
+8. List the files to confirm:
+Finally, list the contents of the Evidence_for_authorities folder to confirm everything is in place:
+
+ls -l
+This will show you the individual evidence files and the newly created Candy-evidence.txt, which will serve as the compiled evidence for the authorities.
+
+Bonus answer:
+
+1. Navigate to Ruth's directory:
+First, ensure you are in the find_kit_cat_burglar directory and then navigate to Ruth’s directory:
+
+
+cd /path/to/find_kit_cat_burglar/Ruth
+2. List the contents of Ruth's directory:
+Check the files present in the directory:
+
+ls -l
+3. Use the file command to identify file types:
+Run the following command to check the file types of the TXT files:
+
+file *.txt
+This command will display the type of each file. Look for any files that are identified as image files (e.g., JPEG, PNG) but currently have a .txt extension.
+
+4. Identify and rename the image files:
+Once you’ve identified the files that are actually images, rename them by changing their extensions to an appropriate image format (e.g., .jpg or .png). For example, if you find that secret_image1.txt is a JPEG image, you would rename it as follows:
+
+mv secret_image1.txt secret_image1.jpg
+Repeat this step for each of Ruth's files that need to be renamed.
+
+5. Open each image file using GIMP:
+You can open each renamed image file with GIMP using the following command:
+
+
+gimp secret_image1.jpg
+Repeat for each image:
+
+
+gimp secret_image2.jpg
+gimp secret_image3.jpg
+gimp secret_image4.jpg
+6. Note the contents of the pictures:
+As each file opens in GIMP, you can view the images. Take notes on what each picture contains as needed.
+
+Summary of Commands
+Here’s a quick summary of the commands you would run:
+
+
+cd /path/to/find_kit_cat_burglar/Ruth
+ls -l
+file *.txt
+mv secret_image1.txt secret_image1.jpg
+mv secret_image2.txt secret_image2.jpg
+mv secret_image3.txt secret_image3.jpg
+mv secret_image4.txt secret_image4.jpg
+gimp secret_image1.jpg
+gimp secret_image2.jpg
+gimp secret_image3.jpg
+gimp secret_image4.jpg
+This will allow you to find Ruth's secret pictures, rename the files correctly, and view their contents.
+
+

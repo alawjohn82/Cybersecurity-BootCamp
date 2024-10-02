@@ -19,4 +19,80 @@ The files each have a timestamp at the bottom.
 Use the mv command to rename each file by adding the date found on the bottom of the file.
 For example, File1 has a date of October 11, 2019. Rename it to file1-10_11_2019.
 
+Answer:
 
+1. Navigate to the oh_henry folder:
+
+cd /03-student/day1/oh_henry/
+List the contents of the folder:
+
+ls -l
+This will show you the folders for files captured from Henry and Ruth, as well as any other files present.
+ Preview the files to determine which contain readable text data:
+You can use the file command to check the file types and see if they contain readable text:
+
+file *
+This command will list each file along with its type. Look for entries that indicate they are ASCII text or UTF-8 text.
+
+2. Remove files that contain non-readable text data:
+Based on the output from the file * command, identify the files that are not readable (e.g., binary files) and remove them using the rm command. For example:
+
+rm <non-readable-file1> <non-readable-file2>
+Replace <non-readable-file1> and <non-readable-file2> with the actual file names that were determined to be non-readable.
+
+Example of Removing Non-Readable Files
+If the output from the file * command indicates the following:
+
+file1.txt: ASCII text
+file2.bin: data
+file3.log: ASCII text
+file4.jpg: JPEG image data
+You would remove file2.bin and file4.jpg:
+
+rm file2.bin file4.jpg
+Verify the remaining files:
+After removing the non-readable files, list the contents again to confirm the deletions:
+
+ls -l
+This will show you only the files that contain readable text data.
+
+Bonus answer:
+1. Navigate to the folder containing the files:
+Assuming you're still in the /03-student/day1/oh_henry/ folder:
+
+cd /03-student/day1/oh_henry/
+2. Preview the files to find the timestamps:
+You can use the cat command to display the contents of the files and find the timestamps:
+
+cat *
+Look for the date at the bottom of each file. For example, if you see:
+
+python
+Copy code
+... (file contents)
+October 11, 2019
+3. Use the mv command to rename each file:
+You can rename the files using the mv command along with the date you found. For example, if you have a file named file1.txt with the date October 11, 2019, you would rename it as follows:
+
+mv file1.txt file1-10_11_2019.txt
+4. Repeat for each file:
+For each file, replace file1.txt with the actual filename and append the appropriate date. Here’s a general example of how you might rename multiple files:
+
+mv file2.txt file2-10_12_2019.txt
+mv file3.txt file3-10_13_2019.txt
+Example
+If you have multiple files and their dates are as follows:
+
+file1.txt: October 11, 2019
+file2.txt: October 12, 2019
+file3.txt: October 13, 2019
+You would run:
+
+mv file1.txt file1-10_11_2019.txt
+mv file2.txt file2-10_12_2019.txt
+mv file3.txt file3-10_13_2019.txt
+5. Verify the renaming:
+After renaming the files, you can list the contents of the folder to ensure the changes were successful:
+
+ls -l
+This will display the newly renamed files with their updated names reflecting the dates
