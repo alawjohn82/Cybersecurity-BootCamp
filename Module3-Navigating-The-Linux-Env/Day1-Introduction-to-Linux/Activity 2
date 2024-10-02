@@ -12,4 +12,35 @@ Using only the command line, continue to complete the following tasks in the /03
 3- Using absolute paths, copy the file log_evidence from Internal_Investigation_Employee_A to Internal_Investigation_Employee_B, as you have been told there will likely be log evidence from both employees.
 4- Check your directories to confirm the files are all in the correct locations.
 
+Answer:
+
+1. Create a folder called Internal_Investigation_Employee_B:
+
+mkdir /03-student/day1/take_5/Internal_Investigation_Employee_B
+
+2. Move the file email_evidence from Internal_Investigation_Employee_A to Internal_Investigation_Employee_B using absolute paths:
+
+mv /03-student/day1/take_5/Internal_Investigation_Employee_A/email_evidence /03-student/day1/take_5/Internal_Investigation_Employee_B/
+
+3. Copy the file log_evidence from Internal_Investigation_Employee_A to Internal_Investigation_Employee_B using absolute paths:
+
+cp /03-student/day1/take_5/Internal_Investigation_Employee_A/log_evidence /03-student/day1/take_5/Internal_Investigation_Employee_B/
+
+4. Check your directories to confirm the files are all in the correct locations:
+To check the contents of Internal_Investigation_Employee_A:
+
+ls /03-student/day1/take_5/Internal_Investigation_Employee_A
+Expected output should show only log_evidence:
+
+log_evidence
+To check the contents of Internal_Investigation_Employee_B:
+
+ls /03-student/day1/take_5/Internal_Investigation_Employee_B
+Expected output should show both email_evidence and log_evidence:
+
+email_evidence
+log_evidence
+
+This will confirm that the files are in their correct locations after the move and copy operations.
+
 
