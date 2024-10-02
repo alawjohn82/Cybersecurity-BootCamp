@@ -17,3 +17,62 @@ Your manager believes the recipe is for peanut candy and would like you to narro
 Use a single command to find all the files that have the words "recipe" and "peanut" in their name.
 Hint: Research how to use the AND functionality with the find command.
 
+Answer:
+
+1. Navigate to the finding_your_way folder:
+
+cd /03-student/day2/finding_your_way/
+2. Navigate into the PeanutButtery.net directory:
+
+cd PeanutButtery.net/
+3. Find all directories with "secret" in their name:
+Use the find command to search for directories with "secret" in their name:
+
+find . -type d -name "*secret*"
+This command will:
+
+Search the current directory (.) and its subdirectories.
+Only look for directories (-type d).
+Match directory names that contain the word "secret" (-name "*secret*").
+4. Find all files with "recipe" in their name:
+Now, use the find command to search for files with "recipe" in their file name:
+
+find . -type f -name "*recipe*"
+This command will:
+
+Search the current directory (.) and its subdirectories.
+Only look for files (-type f).
+Match file names that contain the word "recipe" (-name "*recipe*").
+5. Summary of Commands:
+
+cd /03-student/day2/finding_your_way/
+cd PeanutButtery.net/
+find . -type d -name "*secret*"
+find . -type f -name "*recipe*"
+These commands will help you find all directories containing "secret" and all files containing "recipe" in their names within the PeanutButtery.net directory.
+
+Bonus answer:
+
+1. Navigate to the PeanutButtery.net directory (if not already there):
+
+cd /03-student/day2/finding_your_way/PeanutButtery.net/
+2. Find files with both "recipe" and "peanut" in their name:
+Use the find command with a wildcard pattern that includes both "recipe" and "peanut":
+
+find . -type f -name "*recipe*peanut*"
+This command will:
+
+Search the current directory (.) and its subdirectories.
+Only look for files (-type f).
+Match file names that contain both "recipe" and "peanut" (-name "*recipe*peanut*"), in any order but within the same file name.
+3. Summary of Commands:
+
+cd /03-student/day2/finding_your_way/PeanutButtery.net/
+find . -type f -name "*recipe*peanut*"
+This will locate all files that have both "recipe" and "peanut" in their name within the PeanutButtery.net directory.
+
+
+
+
+
+

@@ -13,3 +13,52 @@ Using only the command line, complete the following tasks from within the /03-st
 4- Combine these files into a single file, called Physical_Access_evidence.
 5- Move this new file to the additional_evidence folder.
 
+Answer:
+
+1. Navigate to the warmup folder:
+
+cd /03-student/day2/warmup/
+2. Make a directory called additional_evidence:
+
+mkdir additional_evidence
+3. Navigate to the directory that contains the physical_access_logs directory:
+Assuming the physical_access_logs directory is somewhere inside the warmup directory, find it by navigating through the folders:
+
+
+cd /path/to/physical_access_logs
+(Replace /path/to/ with the actual path to the physical_access_logs directory.)
+
+4. Preview the physical access logs for October 13, 2019:
+You can use the grep command to search for files that contain "October 13, 2019". Assuming the logs are text files, run:
+
+grep -l "October 13, 2019" *.log
+This will list all the log files that contain records for October 13, 2019.
+
+5. Combine the identified log files into a single file:
+Once you've identified the log files, use the cat command to concatenate them into a single file called Physical_Access_evidence:
+
+
+cat file1.log file2.log file3.log > Physical_Access_evidence
+(Replace file1.log, file2.log, and file3.log with the actual log file names from October 13, 2019.)
+
+6. Move the Physical_Access_evidence file to the additional_evidence folder:
+Now, move the combined file to the additional_evidence folder:
+
+
+mv Physical_Access_evidence /03-student/day2/warmup/additional_evidence/
+7. Verify the contents of the additional_evidence folder:
+To ensure that the file has been moved successfully, navigate back to the additional_evidence folder and list its contents:
+
+cd /03-student/day2/warmup/additional_evidence/
+ls -l
+Summary of Commands:
+
+cd /03-student/day2/warmup/
+mkdir additional_evidence
+cd /path/to/physical_access_logs
+grep -l "October 13, 2019" *.log
+cat file1.log file2.log file3.log > Physical_Access_evidence
+mv Physical_Access_evidence /03-student/day2/warmup/additional_evidence/
+cd /03-student/day2/warmup/additional_evidence/
+ls -l
+This sequence will combine the physical access logs from October 13, 2019, into a single file and move it to the additional_evidence folder.
