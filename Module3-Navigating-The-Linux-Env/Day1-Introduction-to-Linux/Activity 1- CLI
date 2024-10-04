@@ -22,6 +22,8 @@ Using only the command line, complete the following tasks from within the /03-st
 Answer:
 
 1. Create a folder called Internal_Investigation_Employee_A:
+First navigate to /03-student/day1/take_5/ using this command
+cd /03-student/day1/take_5/
 
 mkdir Internal_Investigation_Employee_A
 2. Navigate into the Internal_Investigation_Employee_A folder:
