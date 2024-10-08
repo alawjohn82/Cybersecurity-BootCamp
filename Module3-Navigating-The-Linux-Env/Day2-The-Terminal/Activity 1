@@ -34,6 +34,15 @@ You can use the file command to check the file types and see if they contain rea
 file *
 This command will list each file along with its type. Look for entries that indicate they are ASCII text or UTF-8 text.
 
+b7.txt: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 275x183, components 3
+bb.txt: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 279x181, components 3
+dj.txt: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 256x197, components 3
+do.txt: ASCII text
+sd.txt: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 275x183, components 3
+sp.txt: ASCII text
+ta.txt: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 300x168, components 3
+wp.txt: ASCII text
+
 2. Remove files that contain non-readable text data:
 Based on the output from the file * command, identify the files that are not readable (e.g., binary files) and remove them using the rm command. For example:
 
