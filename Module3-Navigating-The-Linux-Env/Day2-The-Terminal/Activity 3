@@ -93,3 +93,19 @@ cd /03-student/day2/learning_new_commands/
 wc -w *.log > Connections_by_website
 cat Connections_by_website
 This will provide the total number of IP addresses for each website and store them in the Connections_by_website file.
+
+
+sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ ls
+Chocolateyfun.com  GummyGummy.com  PeanutButtery.net  Stickytoffee.com  SugaryGoodness.com
+sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w Chocolateyfun.com 
+157 Chocolateyfun.com
+sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w GummyGummy.com 
+111 GummyGummy.com
+sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w PeanutButtery.net 
+535 PeanutButtery.net
+sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w Stickytoffee.com 
+131 Stickytoffee.com
+sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w SugaryGoodness.com 
+115 SugaryGoodness.com
+sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ 
+

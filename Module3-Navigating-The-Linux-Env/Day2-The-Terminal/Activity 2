@@ -28,6 +28,10 @@ Answer:
 cd /path/to/find_kit_cat_burglar
 (Replace /path/to/ with the actual path to the find_kit_cat_burglar directory.)
 
+cd /03-student/day1/find_kit_cat_burglar 
+run the ls command 
+henry  ruth
+navigate into each folder henry and ruth
 2. Navigate to the subdirectories for Ruth and Henry:
 
 cd Ruth
@@ -131,5 +135,35 @@ gimp secret_image2.jpg
 gimp secret_image3.jpg
 gimp secret_image4.jpg
 This will allow you to find Ruth's secret pictures, rename the files correctly, and view their contents.
+
+notes for henry
+
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls
+Evidence_for_authorities  henry  ruth
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls henry/
+emails  files  logs  other
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls henry/emails/
+email1  email2  email3  email4
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls henry/files/
+b7.txt  bb.txt  dj.txt  do.txt  sd.txt
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls henry/logs/
+log1  log2
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls henry/other
+top_secret
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls henry/other/top_secret/
+recipe_for_sugarplum  recipe_for_sweetums
+
+notes for ruth
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls
+Evidence_for_authorities  henry  ruth
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls ruth/
+emails  files  logs  other
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls ruth/emails/
+emailA  emailB
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls ruth/files/
+b7.txt  bb.txt  dj.txt  lp.txt  sd.txt
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls ruth/logs/
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ ls ruth/other/
+sysadmin@ip-10-0-1-111:/03-student/day1/find_kit_cat_burglar$ 
 
 
