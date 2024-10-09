@@ -20,92 +20,47 @@ Bonus
 Use redirection with the new command to place the total number of IP addresses for each file into a file called Connections_by_website.
 Hint: Use a wildcard, such as *, to run this with a single command.
 
-Answer:
 
-1. Navigate to the learning_new_commands folder:
 
-cd /03-student/day2/learning_new_commands/
-2. Use man wc to research the wc (word count) command:
-You can learn more about the wc command by running:
-
+Solution Guide: Learn New Commands
+First, navigate into the /03-student/day2/learning_new_commands folder on your virtual machine. To do this, run the following command:
+cd /03-student/day2/learning_new_commands
+Next, view the log files in this directory by running ls.
+Notice that there are five files in this directory, one for each website:
+Chocolateyfun.com
+GummyGummy.com
+PeanutButtery.net
+Stickytoffee.com
+SugaryGoodness.com
+Next, preview the contents of a file to see the structure of the logs. Run the following:
+head Chocolateyfun.com
+Notice that in each log file, each line represents an hour and each line shows the IP addresses that connected to the website during that hour.
+We don't want to use the wc -l command to count the lines. We need a command to count the total IP addresses in the file. Note that each IP is considered a word, as it is surrounded by spaces.
+View the man page for wc to see how to count each IP address. Run the following command:
 man wc
-The wc command can count the number of lines, words, and characters in a file. In this case, we will focus on counting words since IP addresses are separated by spaces.
+The man page shows that the option of -w will count the words. This will be the best option for this task.
+Press Q to exit the man page.
+Since we now know how to find the word count, run this on all five files:
+wc -w Chocolateyfun.com
+wc -w GummyGummy.com
+wc -w PeanutButtery.net
+wc -w Stickytoffee.com
+wc -w SugaryGoodness.com
+The results will show that PeanutButtery.net has the highest count and is likely the target of the attack.
 
-wc -w <file> counts the number of words (in this case, IP addresses) in the file.
-3. Count the total number of IP addresses (words) in each log file:
-Use the wc -w command to count the total number of words (IP addresses) in each log file. Assuming the log files are named website1.log, website2.log, etc., run the following commands:
+155 Chocolateyfun.com
+109 GummyGummy.com
+533 PeanutButtery.net
+129 Stickytoffee.com
+113 SugaryGoodness.com
+If you run nano GummyGummy.com, you'll notice that there are extra spaces on the fourth and fourteenth lines. The wc command counts spaces as words, so the exact number of IP addresses is only as accurate as the file itself.
+Bonus
+To run the word-count command against all the files, you have to use a wildcard: *. (Wildcards will be covered in more detail in the next lesson.) Run the command:
+wc -w *
+This will run the word-count command for all the files in the current directory with a single command.
+If you want to redirect these results into the file, Connections_by_website, the command is:
+wc -w * > Connections_by_website
+Lastly, preview the Connections_by_website file to confirm the results are now in this file:
+head Connections_by_website
 
-wc -w website1.log
-wc -w website2.log
-wc -w website3.log
-This will give you the total number of IP addresses (words) for each file.
-
-4. Determine which website had the most network connections:
-After running the wc -w command on each log file, compare the results to find which website has the highest number of IP addresses (connections). The website with the most words in its log file is the likely target of the attack.
-
-5. Example:
-If the output of the wc -w command looks like this:
-
-1000 website1.log
-1500 website2.log
-800 website3.log
-Then website2.log had the most network connections, with 1500 IP addresses.
-
-Summary of Commands:
-
-cd /03-student/day2/learning_new_commands/
-man wc
-wc -w website1.log
-wc -w website2.log
-wc -w website3.log
-This will help you find which website was the likely target of the attack based on the number of IP addresses in each log file.
-
-Bonus answer:
-
-1. Navigate to the learning_new_commands folder:
-
-cd /03-student/day2/learning_new_commands/
-2. Use the wc -w command with a wildcard and redirect the output to Connections_by_website:
-You can use a wildcard (*.log) to match all the log files and redirect the output to the Connections_by_website file:
-
-
-wc -w *.log > Connections_by_website
-This command will:
-
-Use wc -w to count the total number of words (IP addresses) in all files ending with .log.
-Redirect (>) the output to a file named Connections_by_website.
-3. Verify the contents of the Connections_by_website file:
-To check the results, use the cat command:
-
-cat Connections_by_website
-This will display the number of IP addresses for each website along with the log file names.
-
-Example Output:
-After running the command, if you check Connections_by_website, it might look something like this:
-
-
-1000 website1.log
-1500 website2.log
-800 website3.log
-Summary of Commands:
-
-cd /03-student/day2/learning_new_commands/
-wc -w *.log > Connections_by_website
-cat Connections_by_website
-This will provide the total number of IP addresses for each website and store them in the Connections_by_website file.
-
-
-sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ ls
-Chocolateyfun.com  GummyGummy.com  PeanutButtery.net  Stickytoffee.com  SugaryGoodness.com
-sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w Chocolateyfun.com 
-157 Chocolateyfun.com
-sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w GummyGummy.com 
-111 GummyGummy.com
-sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w PeanutButtery.net 
-535 PeanutButtery.net
-sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w Stickytoffee.com 
-131 Stickytoffee.com
-sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ wc -w SugaryGoodness.com 
-115 SugaryGoodness.com
-sysadmin@ip-10-0-1-111:/03-student/day2/learning_new_commands$ 
 
