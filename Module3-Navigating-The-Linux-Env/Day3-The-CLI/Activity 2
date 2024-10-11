@@ -17,46 +17,51 @@ Bonus
 Your manager realizes that some of the recipes require guavaberries as optional, and is now concerned Sugar Corp can still make these secret recipes.
 Compose a single command to find all the files that have the word "guavaberries" OR "optional" in the recipe.
 
-Answer:
 
-1. Navigate to the PeanutButtery.net directory (if not already there):
+Solution Guide: grep
+The first step is to navigate into the folder on our virtual machines where the recipes are located. To do this, run the following commands:
+cd /03-student/day2/
+cd finding_your_way/
+cd PeanutButtery.net/other/disregard/candysecretrecipes
+We need to search for recipes containing the ingredient "guavaberries." The command to search for them in this directory is as follows:
+grep -i guavaberries *
+Note the syntax:
+grep is the command being run.
+-i is the option for grep that indicates case insensitivity.
+guavaberries is the specific data point being searched for.
+* is a wildcard, indicating the command should search through all files in the current directory.
+After running the command, the results show the following four files contain "guavaberries":
+recipe_crunchybars:5 guavaberries
+recipe_peanutballs:4 guavaberries
+recipe_peanutsquares:8 guavaberries
+recipe_yumbars:2 guavaberries
+These results show the file names of all recipes that include guavaberry as an ingredient, followed by a colon and the line in which "guavaberries" appears.
+Bonus
+Adjust the grep command to search for files that also contain the word "optional," indicating that the guavaberries are an optional ingredient.
+The command to search for multiple data points in a file is:
+grep -i 'guavaberries\|optional' *
+Note the syntax:
+grep is the command being run.
+-i is the option for grep that indicates case insensitivity.
+guavaberries is the first specific data point being searched for
+\| Indicates OR.
+It is included between values to search for multiple values using one command.
+optional is the second data point being searched for.
+* is a wildcard indicating the command should search through all files in the current directory.
+Run the command, and notice that the results show all four files, but five lines contain "guavaberries" OR "optional":
 
-cd /03-student/day2/finding_your_way/PeanutButtery.net/
-2. Find files with both "recipe" and "peanut" in their name:
-Use the find command with a wildcard pattern that includes both "recipe" and "peanut":
+  recipe_crunchybars:5 guavaberries
 
-find . -type f -name "*recipe*peanut*"
-This command will:
+  recipe_peanutballs:4 guavaberries
 
-Search the current directory (.) and its subdirectories.
-Only look for files (-type f).
-Match file names that contain both "recipe" and "peanut" (-name "*recipe*peanut*"), in any order but within the same file name.
-3. Summary of Commands:
+  recipe_peanutsquares:8 guavaberries
 
-cd /03-student/day2/finding_your_way/PeanutButtery.net/
-find . -type f -name "*recipe*peanut*"
-This will locate all files that have both "recipe" and "peanut" in their name within the PeanutButtery.net directory.
+  recipe_peanutsquares:  Note: optional - another berry that can be substituted is blueberries
 
-BONUS:
+  recipe_yumbars:2 guavaberries
+This shows that recipe_peanutsquares has an "optional" note stating that blueberries can be used in place of guavaberries.
+This shows that Candy Corp should be the most concerned about the peanut squares recipe, as Sugar can make it without guavaberries.
 
-1. Navigate to the PeanutButtery.net directory (if not already there):
 
-cd /03-student/day2/finding_your_way/PeanutButtery.net/
-2. Search for files containing "guavaberries" or "optional":
-Use the following grep command:
-
-grep -rE "guavaberries|optional" *
-This command will:
-
-Use grep to search for patterns inside files.
--r enables recursive search, meaning it will search through all files and subdirectories.
--E allows you to use extended regular expressions, which supports the use of the | (OR) operator.
-"guavaberries|optional" specifies the two words you're looking for, separated by the OR operator (|).
-* specifies to search all files.
-3. Summary of Commands:
-
-cd /03-student/day2/finding_your_way/PeanutButtery.net/
-grep -rE "guavaberries|optional" *
-This will search for any files within the directory that contain either the word "guavaberries" or "optional" in their content.
 
 
