@@ -1,0 +1,42 @@
+Activity File: Installing Packages
+Now that we have stopped a malicious service from running and completed a basic audit, we're going to cover some of the miscellaneous utilities that we can install onto our VMs. Specifically, we'll install the following services:
+emacs is a traditional file editor.
+cowsay is a utility that takes in input and displays a cow repeating it.
+Instructions
+Many of these files will install in the /usr/games directory, which is not part of the $PATH variable
+Run  echo "export PATH='/usr/games:$PATH'" >> .bashrc && source .bashrc to update the $PATH variable.
+To install the packages emacs and cowsay, you will need to use the command that you have learned from the Installing Packages lecture.
+Each time you install a package, apt will ask for permission to use the disk space needed to install the package.
+Use the man pages to find a flag that lets you automatically answer yes to any prompts that come up when installing a package.
+Install the remaining packages by using this command.
+Next we will want to use our new packages. Use the following commands to run your new utilities:
+emacs will open your new text editor.
+cowsay hello will start a new line with a cow saying "hello."
+Bonus
+Find the command that will let you install multiple packages with a single command.
+Run the following command:
+cowsay "Linux is Fun!"
+
+
+
+sysadmin@ip-10-0-1-111:~$ nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ cat nano shadow_copy 
+cat: nano: No such file or directory
+cat: shadow_copy: Permission denied
+sysadmin@ip-10-0-1-111:~$ sudo nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ sudo nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ sudo nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ sudo john shadow_copy 
+Created directory: /root/.john
+Loaded 5 password hashes with 5 different salts (crypt, generic crypt(3) [?/64])
+Press 'q' or Ctrl-C to abort, almost any other key for status
+123456           (sally)
+football         (billy)
+welcome          (adam)
+welcome          (max)
+lakers           (jack)
+5g 0:00:00:47 100% 2/3 0.1059g/s 315.9p/s 328.1c/s 328.1C/s jupiter..phantom
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+sysadmin@ip-10-0-1-111:~$ 
+
