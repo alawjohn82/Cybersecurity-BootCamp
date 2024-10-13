@@ -10,3 +10,26 @@ Run sudo john shadow_copy.
 Note: This command is all you need to crack passwords.
 This will take some time, but let John the Ripper run, and take note of any passwords you find.
 
+
+
+
+sysadmin@ip-10-0-1-111:~$ nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ cat nano shadow_copy 
+cat: nano: No such file or directory
+cat: shadow_copy: Permission denied
+sysadmin@ip-10-0-1-111:~$ sudo nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ sudo nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ sudo nano shadow_copy 
+sysadmin@ip-10-0-1-111:~$ sudo john shadow_copy 
+Created directory: /root/.john
+Loaded 5 password hashes with 5 different salts (crypt, generic crypt(3) [?/64])
+Press 'q' or Ctrl-C to abort, almost any other key for status
+123456           (sally)
+football         (billy)
+welcome          (adam)
+welcome          (max)
+lakers           (jack)
+5g 0:00:00:47 100% 2/3 0.1059g/s 315.9p/s 328.1c/s 328.1C/s jupiter..phantom
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+sysadmin@ip-10-0-1-111:~$ 
