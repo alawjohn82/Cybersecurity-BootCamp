@@ -55,4 +55,4 @@ Run: sudo addgroup developers and sudo usermod -G developers <username>
 The users adam, billy, sally, and max should only be members of the developers group and their own groups. If you find any groups other than this, document the group and remove it.
 Run: sudo delgroup hax0rs
 
-
+![alt text](image.png)
