@@ -29,3 +29,133 @@ Verify that only the root user has a UID of 0.
 Hint: This is similar to verifying the password.
 Document all of your findings into a file using nano. Keep that file in your research directory.
 
+
+
+1. Set Permissions on /etc/shadow
+The /etc/shadow file contains hashed passwords and is highly sensitive, so only root should have read and write access. To set the correct permissions:
+
+Check current permissions:
+
+bash
+Copy code
+ls -l /etc/shadow
+Set permissions so that only root can read and write:
+
+bash
+Copy code
+sudo chmod 600 /etc/shadow
+This means -rw-------, or read/write only for root.
+
+2. Set Permissions on /etc/gshadow
+Similar to /etc/shadow, the /etc/gshadow file is also sensitive and contains information about group passwords.
+
+Check current permissions:
+
+bash
+Copy code
+ls -l /etc/gshadow
+Set permissions so only root can read and write:
+
+bash
+Copy code
+sudo chmod 600 /etc/gshadow
+3. Set Permissions on /etc/group
+The /etc/group file contains group information and should be readable by all users but only writable by root.
+
+Check current permissions:
+
+bash
+Copy code
+ls -l /etc/group
+Set the correct permissions:
+
+bash
+Copy code
+sudo chmod 644 /etc/group
+This sets the file to -rw-r--r--, allowing root to read and write and others to read only.
+
+4. Set Permissions on /etc/passwd
+The /etc/passwd file contains user account information and, like /etc/group, it should be readable by everyone but writable only by root.
+
+Check current permissions:
+
+bash
+Copy code
+ls -l /etc/passwd
+Set the correct permissions:
+
+bash
+Copy code
+sudo chmod 644 /etc/passwd
+This sets the file to -rw-r--r--, allowing root to read and write and others to read only.
+
+5. Bonus Tasks
+a. Verify All Accounts Have Passwords
+You can check if accounts have passwords by examining the /etc/shadow file. Empty fields in the password section indicate accounts without a password.
+
+View the /etc/shadow file:
+
+bash
+Copy code
+sudo cat /etc/shadow
+Look for lines where the password field (second field) is empty or set to !! or *, which indicates that no password is set.
+
+Ensure all accounts have passwords. If not, set or disable the accounts as needed using:
+
+bash
+Copy code
+sudo passwd username
+b. Verify No Users Other Than root Have UID 0
+Users with a UID of 0 have root privileges. To check if any users besides root have UID 0, run:
+
+bash
+Copy code
+awk -F: '$3 == 0 {print $1}' /etc/passwd
+This will list all users with UID 0. If any user besides root is listed, change their UID to something higher than 1000:
+
+Modify the UID of the user (if needed):
+
+bash
+Copy code
+sudo usermod -u new_uid username
+Replace new_uid with a value greater than 1000.
+
+6. Document Permission Changes
+Create a text file to record the permission changes you've made:
+
+Create a file in your research directory using nano:
+
+bash
+Copy code
+nano /path/to/research/directory/permission_changes.txt
+Document the changes:
+
+bash
+Copy code
+Permissions for /etc/shadow set to 600 (root read/write only)
+Permissions for /etc/gshadow set to 600 (root read/write only)
+Permissions for /etc/group set to 644 (root read/write, others read only)
+Permissions for /etc/passwd set to 644 (root read/write, others read only)
+Save the file (CTRL + O to write, CTRL + X to exit).
+
+7. Verification
+After making changes, verify the permissions:
+
+bash
+Copy code
+ls -l /etc/shadow /etc/gshadow /etc/group /etc/passwd
+Check that the permissions match what you set earlier (600 for /etc/shadow and /etc/gshadow, 644 for /etc/group and /etc/passwd).
+
+Conclusion
+By following these steps, you have:
+
+Secured sensitive system files with the appropriate permissions.
+Verified that all accounts have passwords.
+Ensured that only root has a UID of 0.
+Documented all permission changes.
+
+
+
+
+
+
