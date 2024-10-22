@@ -20,132 +20,39 @@ Remove the following service users associated with the services that you removed
 Service users for any dovecot-related services
 
 
+Solution Guide: Service Users
+In the previous activity, we stopped and removed a few old services from the system. In this activity, we removed those users from the system and added a new service user for tripwire.
+To complete this activity, we needed to:
+Use the deluser command to remove lingering service users;
+Use the adduser command with the correct flags to create a new tripwire use;
+Edit the sudoers file to allow the tripwire user to run tripwire with sudo; and
+Change the tripwire permissions to only allow the owner of tripwire to run the service.
+Note: These steps are not always needed, as most services create their own user when the package is installed.
+Solution
+Note: The bonus solution is included.
+The first step is to remove any service users associated with the following services: ftp and dovecot:
+We can quickly find these users with grep "ftp\|dove" /etc/passwd.
+To remove the service users, run sudo deluser --remove-all-files <username> for each user.
+For example: sudo deluser --remove-all-files dovecot
+We will create a tripwire user that will be dedicated to running Tripwire:
+Run sudo adduser --system --no-create-home tripwire.
+Run id tripwire and verify that the UID is less than 1,000.
+Run ls /home to verify there is no tripwire home folder.
+Remember, we can observe password entries in the /etc/shadow file.
+Run sudo tail /etc/shadow.
+The * in the password field for the Tripwire user means the user is locked without a password.
+Run sudo tail /etc/passwd.
+Note that usr/sbin/nologin is at the end of the Tripwire line.
+We will add a line to the sudoers file in order to allow this user to run only tripwire using sudo privileges.
+Run sudo visudo.
+Add tripwire ALL= NOPASSWD: /usr/sbin/tripwire to the user section of the file and save it.
+The section should be as follows:
+# User privilege specification
+root ALL=(ALL:ALL) ALL
+tripwire ALL= NOPASSWD: /usr/sbin/tripwire
+We will change the permission of the tripwire program to only allow the owner to execute it.
+Run which tripwire to locate the tripwire package.
+Run sudo chmod 700 /usr/sbin/tripwire.
+Run ls -l /usr/sbin/tripwire to verify.
 
-1. Remove Service Users for the vsftpd Service
-Service users for vsftpd (and other services) are often listed in /etc/passwd. These users are typically non-login users created specifically for running services.
 
-Search for vsftpd-related service users:
-
-bash
-Copy code
-grep vsftpd /etc/passwd
-This will return any users related to the vsftpd service.
-
-Remove the identified service user(s):
-
-bash
-Copy code
-sudo deluser vsftpd_user
-Replace vsftpd_user with the actual username from the output of the grep command.
-
-2. Create a New tripwire Service User
-The tripwire user will be a service account with limited privileges, no home folder, and no login shell. To add such a user:
-
-Create the tripwire user without a home directory and set /usr/sbin/nologin as the shell:
-
-bash
-Copy code
-sudo adduser --system --no-create-home --shell /usr/sbin/nologin tripwire
-Verify the user is created correctly:
-
-bash
-Copy code
-grep tripwire /etc/passwd
-The output should show that the tripwire user exists with no home directory and has /usr/sbin/nologin as the shell.
-
-3. Verify that the User is a Service User
-Service users are typically assigned a system UID (below 1000). Verify this by inspecting the /etc/passwd file again:
-
-bash
-Copy code
-grep tripwire /etc/passwd
-Check the UID in the third field; system UIDs are typically below 1000.
-
-4. Verify the User Does Not Have a Home Folder
-The --no-create-home option should have prevented the creation of a home directory. Confirm this by checking the /home directory:
-
-bash
-Copy code
-ls -ld /home/tripwire
-If no output is shown, the home directory does not exist.
-
-5. Verify the User is Locked Without a Password
-Check if the tripwire user account is locked:
-
-bash
-Copy code
-sudo passwd -S tripwire
-The output should indicate that the account is locked (e.g., tripwire L).
-
-6. Verify the User Does Not Have a Login Shell
-Check the login shell for the tripwire user:
-
-bash
-Copy code
-grep tripwire /etc/passwd
-Ensure that the shell is /usr/sbin/nologin, which prevents the user from logging in.
-
-7. Grant Sudo Privileges for Tripwire Only
-To allow the tripwire user to run only the Tripwire program with sudo privileges, follow these steps:
-
-Open the sudoers file with visudo:
-
-bash
-Copy code
-sudo visudo
-Add the following line to give tripwire sudo access for the Tripwire command:
-
-bash
-Copy code
-tripwire ALL=(ALL) NOPASSWD: /usr/sbin/tripwire
-This allows the tripwire user to run the /usr/sbin/tripwire command using sudo without needing a password.
-
-Save and exit the visudo editor.
-
-8. Change Permissions of the Tripwire Program
-Set the permissions of the Tripwire program so only the owner can execute it:
-
-Locate the path of the Tripwire program (usually /usr/sbin/tripwire).
-
-Set the permissions:
-
-bash
-Copy code
-sudo chmod 700 /usr/sbin/tripwire
-This ensures only the owner (likely root) can execute the Tripwire program.
-
-Bonus: Remove Service Users for dovecot Services
-If dovecot or related services were removed in a previous activity, remove any associated service users.
-
-Search for dovecot-related users:
-
-bash
-Copy code
-grep dovecot /etc/passwd
-Remove the identified service user(s):
-
-bash
-Copy code
-sudo deluser dovecot_user
-Replace dovecot_user with the actual username from the output.
-
-Document Your Changes
-Create a file to document the changes made to users and permissions:
-
-Open a new text file in your research directory:
-
-bash
-Copy code
-nano /path/to/research/directory/user_changes.txt
-Record the changes:
-
-sql
-Copy code
-Removed service user: vsftpd_user
-Created tripwire service user with no home directory, locked account, and no login shell.
-Configured sudo access for tripwire to only run Tripwire program.
-Set permissions on /usr/sbin/tripwire to 700 (owner only).
-Save and exit (CTRL + O, Enter, CTRL + X).
-
-Conclusion
-By completing these steps, you have removed old service users, created a secure service user for running Tripwire, configured permissions, and documented your changes.

@@ -25,93 +25,38 @@ Hint: Dovecot comes in two packages: dovecot-imapd and dovecot-pop3d. You'll nee
 
 
 
-Steps to Audit and Manage the Services:
-1. Check if a Service is Running:
-To check if a service is running, use the systemctl command:
-
-bash
-Copy code
-sudo systemctl status service_name
-For example:
-
-bash
-Copy code
-sudo systemctl status vsftpd.service
-2. Stop the Service:
-If a service is running, stop it with:
-
-bash
-Copy code
-sudo systemctl stop service_name
-For example:
-
-bash
-Copy code
-sudo systemctl stop vsftpd.service
-3. Verify the Service is Stopped:
-To ensure the service is stopped, re-check its status:
-
-bash
-Copy code
-sudo systemctl status service_name
-You should see that it is inactive or stopped.
-
-4. Disable the Service:
-To prevent the service from starting on boot, disable it using:
-
-bash
-Copy code
-sudo systemctl disable service_name
-For example:
-
-bash
-Copy code
-sudo systemctl disable vsftpd.service
-Important: Do not disable apache2 or nginx, as they are needed for future activities.
-
-5. Remove the Service (Optional for Future Use):
-Since you're instructed not to remove the services for this task, take note of the commands to remove them, but do not execute them yet. The command to remove services can vary depending on the package manager in use. For Ubuntu, use:
-
-bash
-Copy code
-sudo apt remove package_name
-For example, to remove FTP:
-
-bash
-Copy code
-sudo apt remove vsftpd
-You would also use similar commands to remove other services but hold off on actually executing these for now.
-
-Services to Audit:
-FTP: vsftpd.service
-
-Check: sudo systemctl status vsftpd.service
-Stop: sudo systemctl stop vsftpd.service
-Disable: sudo systemctl disable vsftpd.service
-(Optional Remove: sudo apt remove vsftpd)
-Telnet: xinetd.service
-
-Check: sudo systemctl status xinetd.service
-Stop: sudo systemctl stop xinetd.service
-Disable: sudo systemctl disable xinetd.service
-(Optional Remove: sudo apt remove xinetd)
-HTTP: apache2.service or nginx.service
-
-Check: sudo systemctl status apache2.service or nginx.service
-Stop: sudo systemctl stop apache2.service or nginx.service
-Disable: Do not disable these services for future activities.
-(Optional Remove: sudo apt remove apache2 or nginx, but don’t remove them yet.)
-IMAP/POP3: dovecot.service
-
-Check: sudo systemctl status dovecot.service
-Stop: sudo systemctl stop dovecot.service
-Disable: sudo systemctl disable dovecot.service
-(Optional Remove: sudo apt remove dovecot-imapd dovecot-pop3d)
-Network Information Service (NIS): nis.service
-
-Check: sudo systemctl status nis.service
-Stop: sudo systemctl stop nis.service
-Disable: sudo systemctl disable nis.service
-(Optional Remove: sudo apt remove nis)
-Summary:
-For each service, you are auditing, ensure that it is not running by stopping and disabling it. You can note the removal command for later use but do not execute it unless specifically required in future tasks.
+Solution Guide: Managing Services 
+ 
+This activity was an audit of the services running on this server. To complete this activity, you 
+need to: 
+• Identify the services in the list that are installed and running on the machine; 
+• Stop each service; 
+• Disable each service; and 
+• Uninstall each service. 
+Run systemctl -t service --all to determine which services are running. The following services 
+from the list are listed as present on the server: 
+• vsftpd.service (FTP) 
+• apache2.service (HTTP) 
+• nginx.service (HTTP) 
+Bonus 
+• xinetd.service (Telnet) 
+• dovecot.service (IMAP or POP3) 
+These services can help attackers gain access to the server, and none of them are necessary 
+for the server to function properly. 
+• To stop a service: 
+o Run sudo systemctl stop <service_name>. 
+• To verify the service is stopped: 
+• Run systemctl status <service_name>. 
+o Note: You can run systemctl against multiple services like this: systemctl status 
+<service_name_1> <service_name_2>. You can start, stop, enable, and disable 
+multiple services at once too. 
+• To disable the service: 
+• Run sudo systemctl disable <service_name>. 
+o Note: Do not actually disable nginx or apache2 from the system because they 
+are needed later. 
+• To remove the service from the system: 
+• Run sudo apt remove <service_name>. 
+o Note: Do not actually remove nginx or apache2 from the system because they 
+are needed later. 
+ 
+ 
