@@ -65,3 +65,284 @@ Provide a report from the Lynis output with recommendations for how to harden th
 
 IMPORTANT: Please review your answers carefully before submitting to ensure that they are free of spelling and spacing errors. Incorrect spelling or incorrect spacing syntax will be marked as incorrect answers.
 
+
+
+STEP1
+
+1. Navigate to the /etc/ Directory
+Open a terminal and navigate to the /etc/ directory:
+
+bash
+Copy code
+cd /etc/
+2. Inspect and Update Permissions for /etc/shadow
+The /etc/shadow file contains hashed passwords and should only be accessible by root with read and write permissions.
+
+Check the current permissions:
+
+bash
+Copy code
+ls -l /etc/shadow
+You should see:
+
+bash
+Copy code
+-rw------- 1 root root <date> /etc/shadow
+This means only root can read and write (600).
+
+If the permissions are incorrect, update them:
+
+bash
+Copy code
+sudo chmod 600 /etc/shadow
+3. Inspect and Update Permissions for /etc/gshadow
+The /etc/gshadow file holds information about group passwords, so it should also be restricted to root for read and write access.
+
+Check the current permissions:
+
+bash
+Copy code
+ls -l /etc/gshadow
+You should see:
+
+bash
+Copy code
+-rw------- 1 root root <date> /etc/gshadow
+If the permissions are incorrect, update them:
+
+bash
+Copy code
+sudo chmod 600 /etc/gshadow
+4. Inspect and Update Permissions for /etc/group
+The /etc/group file contains group information and should be readable by everyone, but only writable by root.
+
+Check the current permissions:
+
+bash
+Copy code
+ls -l /etc/group
+You should see:
+
+bash
+Copy code
+-rw-r--r-- 1 root root <date> /etc/group
+This corresponds to 644, which allows root to read and write, and everyone else to read only.
+
+If the permissions are incorrect, update them:
+
+bash
+Copy code
+sudo chmod 644 /etc/group
+5. Inspect and Update Permissions for /etc/passwd
+The /etc/passwd file holds user account information. Like /etc/group, it should be readable by everyone but writable only by root.
+
+Check the current permissions:
+
+bash
+Copy code
+ls -l /etc/passwd
+You should see:
+
+bash
+Copy code
+-rw-r--r-- 1 root root <date> /etc/passwd
+This also corresponds to 644, allowing root to read and write, and others to read only.
+
+If the permissions are incorrect, update them:
+
+bash
+Copy code
+sudo chmod 644 /etc/passwd
+6. Verify Permissions
+After making any necessary changes, verify the permissions to ensure everything is set correctly:
+
+bash
+Copy code
+ls -l /etc/shadow /etc/gshadow /etc/group /etc/passwd
+Summary of Permissions
+File	Permissions (Numeric)	Permissions (Symbolic)	Owner
+/etc/shadow	600	-rw-------	root:root
+/etc/gshadow	600	-rw-------	root:root
+/etc/group	644	-rw-r--r--	root:root
+/etc/passwd	644	-rw-r--r--	root:root
+These settings secure sensitive files while allowing system functionality for non-root users.
+
+STEP2
+
+Add users to the system using the useradd command:
+
+For each user (sam, joe, amy, sara, and admin1), run the following commands:
+
+bash
+Copy code
+sudo useradd sam
+sudo useradd joe
+sudo useradd amy
+sudo useradd sara
+sudo useradd admin1
+Set passwords for the users (optional but typically necessary for access). Use the passwd command:
+
+bash
+Copy code
+sudo passwd sam
+sudo passwd joe
+sudo passwd amy
+sudo passwd sara
+sudo passwd admin1
+Grant sudo privileges to admin1 by adding them to the sudo group:
+
+bash
+Copy code
+sudo usermod -aG sudo admin1
+This command modifies admin1 to append them to the sudo group (-aG means "append to group").
+
+Verify admin1’s sudo privileges by checking the /etc/group file or using the following command:
+
+bash
+Copy code
+groups admin1
+This will show the groups admin1 belongs to, including sudo.
+
+
+STEP3
+
+Create the group called engineers:
+
+bash
+Copy code
+sudo groupadd engineers
+Add users to the engineers group:
+
+Add sam, joe, amy, and sara to the engineers group:
+
+bash
+Copy code
+sudo usermod -aG engineers sam
+sudo usermod -aG engineers joe
+sudo usermod -aG engineers amy
+sudo usermod -aG engineers sara
+Create the shared group folder in /home/:
+
+bash
+Copy code
+sudo mkdir /home/engineers
+Change the ownership of the shared folder so that the engineers group has control over it:
+
+bash
+Copy code
+sudo chown :engineers /home/engineers
+The : before the group name sets the group ownership to engineers.
+
+Set permissions on the shared folder so that the group members have the correct access. To give read, write, and execute permissions to the group while keeping others out:
+
+bash
+Copy code
+sudo chmod 770 /home/engineers
+This ensures that the engineers group has full access (read, write, execute), and others cannot access the folder.
+
+Summary of Commands:
+bash
+Copy code
+sudo groupadd engineers
+sudo usermod -aG engineers sam
+sudo usermod -aG engineers joe
+sudo usermod -aG engineers amy
+sudo usermod -aG engineers sara
+sudo mkdir /home/engineers
+sudo chown :engineers /home/engineers
+sudo chmod 770 /home/engineers
+
+
+STEP4
+
+Install the Lynis package:
+
+If Lynis is not installed on your system, you can install it using your package manager.
+
+For Debian/Ubuntu-based systems:
+
+bash
+Copy code
+sudo apt update
+sudo apt install lynis
+For Red Hat/CentOS-based systems:
+
+bash
+Copy code
+sudo yum install epel-release
+sudo yum install lynis
+Run a Lynis system audit:
+
+After installation, you can run the audit using the following command:
+
+bash
+Copy code
+sudo lynis audit system
+This will start a full system audit, and Lynis will output various security checks and recommendations to the terminal.
+
+Review the Lynis output:
+
+The audit will generate a report detailing the current state of the system and any potential security issues. The output will provide:
+
+Warnings about configuration settings.
+Suggestions on hardening the system.
+Example of Running a Lynis Audit:
+
+bash
+Copy code
+sudo lynis audit system
+The output will contain sections like:
+
+System Integrity
+Network Configuration
+File Permissions
+Malware Scanners
+Firewall and Ports
+Kernel Hardening
+Logging and Auditing
+Harden the system based on Lynis recommendations:
+
+After running the audit, review the suggestions provided by Lynis for system hardening. Here are common recommendations that Lynis might give:
+
+Password policy hardening: Ensure strong password policies by enforcing a minimum password length and using tools like pam_cracklib or pam_pwquality.
+
+File and directory permissions: Tighten permissions on critical system files and directories (e.g., /etc/passwd, /etc/shadow).
+
+Firewall rules: Review the firewall configuration and ensure that only necessary ports are open.
+
+Kernel hardening: Enable additional kernel-level security features such as ASLR (Address Space Layout Randomization), disabling core dumps, and enabling ExecShield.
+
+Log file configuration: Ensure that all critical system events are being logged and that log files are protected from unauthorized access.
+
+System updates: Ensure that the system has the latest security patches and software updates installed.
+
+Unused services: Disable any unnecessary services running on the system to reduce potential attack vectors.
+
+Sample Output (Part of the Lynis Report):
+markdown
+Copy code
+Suggestions (Lynis hardening index):
+------------------------------------
+  - Enable password aging
+  - Disable root login via SSH
+  - Ensure no unneeded services are running
+  - Harden system sysctl parameters (e.g., net.ipv4.conf.all.accept_redirects)
+  - Install an intrusion detection system like AIDE or Tripwire
+  - Configure AppArmor or SELinux for mandatory access control
+
+Hardening index: 60 [Warning]
+Suggestions: 10
+Based on the output, you can start applying the specific changes to harden your system.
+
+Summary:
+Install Lynis using the package manager.
+Run the audit using sudo lynis audit system.
+Review the recommendations in the report to harden your system, including improving password policies, securing file permissions, updating firewall rules, disabling unnecessary services, and ensuring system updates.
+
+
+
+
+
+
+
+
