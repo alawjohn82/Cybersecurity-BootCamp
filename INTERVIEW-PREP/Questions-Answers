@@ -1,0 +1,30 @@
+1- Name some of the most critical security concerns for the Linux platform.
+
+Some of the most critical security concerns for Linux include vulnerabilities, misconfigurations and security gaps, and malware:
+
+Vulnerabilities: One of the most common methods cybercriminals use to gain initial access into an environment is the exploitation of a vulnerability in a publicly hosted service. The lack of both vulnerability management and tracking procedures can leave Linux systems highly exposed when a vulnerability is found and an exploit is published.
+
+Misconfigurations and security gaps: Misconfigurations are quite common and have always been a critical security concern. A misconfiguration is a weakness that is typically introduced during the process of configuring software. When companies started switching to new environments like the cloud, many inadvertently brought misconfigurations with them, which created security gaps.
+
+Malware: There are a variety of malware that exist on the Linux platform. The malware that seem to be the most pervasive include ransomware, cryptocurrency miners, user- and kernel-mode rootkits, worms, trojans, backdoors, and remote access trojans (RATs).
+
+This type of question can be answered broadly, as demonstrated above, and it can be very conversational. As you’re formulating your answer to a question like this, think about everything you’ve learned about Linux systems and their vulnerabilities. Also think about the distribution used at the company for which you’re interviewing. Feel free to invite your interviewer into the discussion by asking: What have been some of this team’s critical security concerns? Once you know the team’s concerns, you can speak to them directly.
+
+2- Which tools can help you check whether your Linux system has been compromised?
+
+There are a few different tools that can help you check whether your Linux system has been compromised. One is called chkrootkit, which checks for signs of a rootkit. Another is rkhunter, which checks for known rootkits and other suspicious files. Finally, you can check the system logs to see any suspicious entries.
+
+3- We need someone with a good balance of technical skills and soft skills. What is your greatest non-technical strength?
+This is a great opportunity to talk about your transferable skills, the skills that can be transferred from one job to another. According to LinkedInLinks to an external site., some of today’s most in-demand skills are non-technical, including communication, management, and teamwork. When responding to this question, identify one of your strengths, explain how this strength has led you to success in the past, and make a direct connection to how this strength will enable you to bring value to the company.
+
+4- What are the advantages of shell scripting?
+Discuss some of the many benefits of shell scripting and how you have utilized these benefits in your work. Some benefits include the ability to automate work, to implement routine backups, and to monitor systems.
+
+5- What types of network attacks can be prevented by data archiving?
+Without a strategic data archiving policy, organizations can be vulnerable to potential risks. Data can be compromised or lost as a result of malicious attacks, employee error or natural disaster. Social engineering attacks like phishing are a primary vector used by attackers to access sensitive data. Other attacks that can be prevented by data archiving include ransomware, malicious insider attacks, and SQL injection.
+
+When answering a question like this, focus on what is being asked and answer the question fully. It is also okay to bring up anything that’s particularly interesting to you regarding data security. For instance, with this question, you can talk about the benefits of data archiving from a security and business perspective. This will allow you to show the full range of your cybersecurity knowledge and demonstrate your passion for the industry.
+
+6- What type of attack could an adversary perform using cron?
+Adversaries may abuse the cron utility to perform task scheduling for initial or recurring execution of malicious code. The cron utility is a time-based job scheduler for Unix-like operating systems. The crontab file contains the schedule of cron entries to be run and the specified times for execution. Any crontab files are stored in operating system-specific file paths. An adversary may use cron in Linux or Unix environments to execute programs at system startup or on a scheduled basis for persistence.
+
