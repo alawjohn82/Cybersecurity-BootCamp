@@ -165,6 +165,7 @@ Perform a search within the ~/Documents/epscript directory for Mark Lopez patien
 Move into the directory cd ~/Documents/epscript.
 Ensure archive has been extracted for viewing tar xvf 20190814epscript.tar.
 Search grep -R "Mark,Lopez" epscript/.
+Or run grep -R 'Mark,Lopez' patient_research/
 The output should look similar to the following:
 
 809,Mark,Lopez,male,O,31,577.511.1054x23935,jeffrey93@jones.net,model,"673 Schultz Spur Apt. 244
@@ -172,6 +173,7 @@ The output should look similar to the following:
 
 Within the same directory, perform a search for Megan Patel patient records as follows:
 Run grep -R "Megan,Patel" epscript/.
+Or run grep -R 'Megan,Patel' patient_research/
 The output should look similar to the following:
 
 699,Megan,Patel,female,AB,43,001-684-391-7956,pjohnson@gmail.com,develop,"53082 Lopez IslandChavezchester, CT 11475"
