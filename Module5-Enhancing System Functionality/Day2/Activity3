@@ -65,5 +65,5 @@ Multiple commands can be configured to run inside of a single executable script.
 Moving the backup.sh , cleanup.sh, and update.sh scripts to their corresponding system-wide cron directories.
 Creating lynis scripts to perform security scans.
 
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
 

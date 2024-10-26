@@ -112,5 +112,5 @@ sudo ./cleanup.sh
 Apt cache: After installing a package, the apt manager saves the package and dependencies in a cache folder. They remain after installation unless the apt cache is cleared.
 Thumbnails cache: With each image file, your Linux distro creates a thumbnail when you view images in your file manager. Thumbnails often remain for pictures that no longer exist. Therefore, this can be beneficial to clear old thumbnails.
 
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
 

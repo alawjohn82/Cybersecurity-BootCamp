@@ -87,5 +87,5 @@ This command will perform a long listing of the ~/Downloads directory daily at 4
 After scheduling your jobs, double-check that your crontab has been created in /var/spool/cron. Remember the path to your crontab file once you find it.
 sudo ls -l /var/spool/cron/crontabs | grep sysadmin
 
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
 
