@@ -213,6 +213,17 @@ Goodluck!        (student)
 8g 0:00:06:13 100% 2/3 0.02141g/s 302.0p/s 309.7c/s 309.7C/s Missy!..Jupiter!
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed
-root@042805c9c276:/# 
+root@042805c9c276:/# john --show /etc/shadow
+student:Goodluck!:19608:0:99999:7:::
+mitnick:trustno1:19608:0:99999:7:::
+babbage:freedom:19608:0:99999:7:::
+lovelace:dragon:19608:0:99999:7:::
+stallman:computer:19608:0:99999:7:::
+turing:lakers:19608:0:99999:7:::
+sysadmin:passw0rd:19608:0:99999:7:::
+sysd:1234:20029:0:99999:7:::
+
+8 password hashes cracked, 0 left
+
 
 
