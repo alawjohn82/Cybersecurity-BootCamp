@@ -120,3 +120,73 @@ You will not need to transfer the file, as John is already installed on the scav
 note
 Cracking passwords is a process that takes time. Now might be a good opportunity to take a break and let the computer do the work for you.
 
+
+Question 1
+15 / 15 pts
+How do you create a secret user named 'sysd' without creating a home folder for this user?
+  mkuser sysd 
+  useradd sysd 
+Correct, this creates a new user named 'sysd' without automatically creating a home directory for them.
+  useradd -nohome sysd 
+  adduser sysd -nohome 
+ 
+Question 2
+15 / 15 pts
+What is the command to set or change the password for the secret user 'sysd'?
+  mkpasswd sysd 
+  newpass sysd 
+  passwd sysd 
+Correct, this allows you to set or change the password for the user 'sysd'.
+  moduser sysd passwd 
+ 
+Question 3
+15 / 15 pts
+How do you assign a system UID less than 1000 to your secret user 'sysd'?
+  usermod sysd -uid 400 
+  usermod -u 400 sysd 
+Correct, this changes the user ID of 'sysd' to a specific system ID (400), which is below 1000
+  moduser -ud 400 sysd 
+  modusr -u 400 sysd 
+ 
+Question 4
+15 / 15 pts
+What is the command to give your secret user 'sysd' a group ID (GID) that matches their user ID (UID)?
+  modgroup -chg 400 sysd 
+  grpmod sysd -g 400 
+  groupmod -g 400 sysd 
+Correct, this changes the group ID of the user 'sysd' to 400, matching the user ID set in the previous step.
+  grpmod -chg 400 sysd 
+ 
+Question 5
+10 / 10 pts
+What is the line you add to the sudoers file to allow the the secret user 'sysd' to sudo without requiring a password?
+  sysd NOPASS=(ALL:ALL) 
+  sysd ALL= NOPASS:ALL 
+  sysd NOPASSWD:ALL 
+  sysd ALL=(ALL:ALL) NOPASSWD:ALL 
+Correct, this procedure allows 'sysd' to execute all commands as a superuser without being prompted for a password, by safely modifying the sudoers file using visudo and adding the specified line.
+ 
+Question 6
+10 / 10 pts
+What is the full command you used to crack the passwords?
+  john /etc/shadow 
+Correct, john is used to crack the /etc/shadow file.
+  johnr /shadow 
+  john -showpass /shadow 
+  john -crack /etc/shadow 
+ 
+Question 7
+20 / 20 pts
+Match the passwords to their users.
+stallman 
+computer
+babbage 
+freedom
+mitnick 
+trustno1
+lovelace 
+lovelace
+turing 
+lakers
+
+
