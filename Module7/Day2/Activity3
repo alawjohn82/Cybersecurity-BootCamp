@@ -1,0 +1,112 @@
+Activity File: Removing Unnecessary Packages with PowerShell
+In this activity, you will be continuing your role as a junior system administrator.
+
+
+As a system administrator, we don't want our users playing games or using unnecessary applications while working. One reason is that these applications can potentially expose personal user email addresses, usernames, or other personal identification information to unnecessary applications.
+
+
+The CIO has tasked us with creating a PowerShell script that will get rid of these Windows bloat applications, and has provided a CSV file containing a list of these applications' packages.
+
+
+Note that this list is significantly larger than in the demo.
+Use the following directory and CSV file within your Windows RPD host machine to complete the activity:
+Use C:\Users\azadmin\Documents\Activity\choco as your working directory.
+
+
+Use the chocoactivity.csv inside this directory for your activity.
+
+
+Instructions
+Create a PowerShell script file called removepackages.ps1 in the working directory.
+
+
+The file can be tested with .\removepackages.ps1 in PowerShell.
+
+
+Use the following template to set up your script:
+
+
+  <import line here>
+  foreach (<condition here>) {
+      <PowerShell code block to be executed here>
+  }
+
+Import the CSV chocoactivity.csv by assigning the $csv variable to the Import-Csv cmdlet, with the appropriate parameters.
+
+
+Create a foreach condition where a $package variable reads each line in the $csv variable.
+
+
+Within the code block, run the uninstall command with the appropriate variable and attribute.
+
+
+Make sure to include the auto-confirm parameter that stands for yes.
+
+
+When you successfully create and execute the script, PowerShell will start uninstalling the packages within the CSV file. This will take a few minutes to complete.
+
+
+Bonus
+Under the get and remove cmdlet pipeline, print a line that states <package name> removed! using the proper CSV field instead of the placeholder.
+
+
+Hint: If you're not sure what fields exist in the CSV file, open it!
+Reinstalling Your Applications
+Simply change "uninstall" to "install" within your code block to reinstall the applications for repeated testing. This will take a few minutes to complete.
+
+
+Solution Guide: Removing Unnecessary Packages with PowerShell
+For this exercise, we used conditionals in a PowerShell script to uninstall various Windows packages that add bloat to the system and increase its attack surface area.
+Solution
+Create a PowerShell script file called removepackages.ps1 in the working directory.
+
+
+Run cd C:\Users\azadmin\Documents\Activity\choco.
+
+
+Create a removepackages.ps1 file:
+
+
+Create a file in your preferred text editor and save it as removepackages.ps1.
+Import the CSV chocoactivity.csv by assigning the $csv variable to the Import-Csv cmdlet, with the appropriate parameters.
+
+
+We'll need a line to import the CSV file:
+
+
+Type Import-Csv -Path ./chocoactivity.csv.
+Create a foreach condition where a $package variable reads each line in the $csv variable.
+
+
+Start a PowerShell foreach loop template:
+
+
+  foreach () {
+
+  }
+
+Construct the foreach condition within the parentheses.
+
+
+Enter $package in $csv in the parentheses.
+
+
+Within the code block, run the uninstall command with the appropriate variable and attribute.
+
+
+Enter choco uninstall -y $package.name in the code block.
+
+For the bonus, add the following line: Write-Output $package.name removed!.
+
+
+Your final script should look like this:
+
+
+  $csv = Import-Csv -Path .\chocoactivity.csv
+  foreach ($package in $csv) {
+      choco uninstall -y $package.name
+      Write-Output $package.name removed!
+  }
+When we successfully create and execute the script, PowerShell will start uninstalling the packages within the CSV file. This will take a few minutes to complete.
+
+
