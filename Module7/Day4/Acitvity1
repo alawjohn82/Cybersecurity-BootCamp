@@ -1,0 +1,88 @@
+Module 7 Day 4: Activity 1 Custom Certificate Template
+Activity Introduction
+In this activity, you will create a custom certificate template to be used in the next activity. This custom certificate template will allow you to explore the different properties when making a certificate template.
+1. In the server VM, click on the start button and type in 'certification authority' and click on Certification Authority to bring up the MMC panel for certificates.
+2. Click the drop-down menu on the machine name to see the list of certificates
+
+3. Right click on 'Certificate Templates' and select 'manage' to see the available templates.
+
+4. Right click on the 'User' template and select 'Duplicate Template'. This will bring up a window 'Properties of New Template'.
+
+You will now begin to craft a more universal certificate template that can be used for more things than the default 'User' template. This is a common system administrator task that has potential security implications, which we will explore in the final day of penetration testing, unit 17. Similar to giving a user more permissions than needed, certificates are often heavily over privileged.
+
+
+Click on the **Subject Name** tab.
+ 
+- A Subject Alternative Name (SAN) is an extension to the X.509 certificate standard that allows additional host names or domains to be associated with a single SSL/TLS certificate.
+
+
+- If enabled, an attacker can request a certificate with the SAN of a privileged account like a domain admin, enabling authentication as that account.
+
+
+- A SAN in an SSL/TLS certificate is like having a single key that can open multiple locks or doors. Traditionally, you would need a separate key for each door you want to open or secure. This is analogous to needing a separate SSL/TLS certificate for each domain or hostname you want to secure. With a certificate where the client can supply the SAN, it's like having a master key that can open multiple doors or locks. The main domain name is like the primary lock, and the additional Subject Alternative Names (SANs) are like the other locks that the same key can open.
+
+
+1. Select the 'Supply in the request' button and accept the warning that pops up.
+    
+Click on the **Security** tab.
+
+
+- Certificate templates have security descriptors that control which principals (users/groups) can enroll for that template.
+- Misconfigured permissions granting low-privileged users or large groups like "Authenticated Users" the ability to enroll can enable domain escalation attacks.
+
+
+1. Select 'Authenticated Users' if it's not already selected and check the 'Allow' box next to 'Enroll' and apply the changes.
+
+
+    - The security tab will automatically edit the security descriptors on an object. In this case, the object is the security template.
+    
+    - This now allows any authenticated user to enroll this certificate.
+
+Click on the **Issuance Requirements** tab.
+
+
+- Templates can require manager approval or authorized signatures before issuing certificates, adding an extra layer of verification.
+
+
+- Disabling these requirements can allow unconstrained certificate issuance, increasing the risk of abuse.
+
+
+- This is already disabled for the 'User' template, which is what we duplicated and are working off of.
+
+
+
+
+
+Click on the **Extensions** tab.
+
+
+- Templates with Enhanced Key Usages (EKU or extensions) like "Client Authentication," "Smart Card Logon," or "Any Purpose" allow the issued certificates to be used for domain authentication
+
+
+- Attackers can request certificates from such templates and authenticate as any user/service specified in the SAN, if the SAN is customizable.
+
+
+- The extension/EKU essentially tells the certificate what is allowed to be used for.
+
+
+1. Select the 'Application Policies' extension
+
+
+2. Click the 'Add...' button
+
+
+3. Select 'Any Purpose' and then click 'OK' twice.
+
+
+4. Select 'Apply'.
+
+
+
+Click on the **General** tab.
+1. Change the display name and template name of the certificate to 'Overprivileged' and select 'OK'.
+
+You've now created a certificate template that is over privileged and we will use it in the next activity as well as the final day of penetration testing (unit 17)!
+
+
+
+

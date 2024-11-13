@@ -1,0 +1,316 @@
+Module 7 Day 4: Active Directory Certificate Services
+Class Instruction
+Overview
+In today's class, you will learn how to manage Active Directory Certificate Services in a Windows domain.
+Class Objectives
+By the end of the class, you will be able to:
+
+Understand the purpose and functionality of ADCS.
+Learn the components and architecture of ADCS.
+Understand the process of installing and configuring ADCS.
+Learn how to manage and maintain ADCS in an enterprise environment.
+
+Lesson Slideshow
+The lesson slides are available on Google Drive here: 7.4 Slides
+
+
+Note: Editing access is not available for this document. If you or your students wish to modify the slides, please create a copy by navigating to File > "Make a copy...".
+
+
+
+
+
+
+Module Day 4 Content Tracker
+ 
+ 1.Welcome and Overview
+2.Public-Key-Infrastuture
+3.Install ADCS
+4.Templates
+5.Break
+6.Custom Templates
+7.IIS-Setup-with-Certificate-Authentication
+8.Active-Directory-Hardening
+9.End
+
+
+
+
+
+01. Welcome and Overview
+
+Welcome to the fourth day of Windows. In the previous class, we covered the following:
+
+Using PowerShell to navigate and manage the Windows system directories and files.
+Securing our domain using group policy.
+Deploying Windows Defender to secure against malware threats.
+
+Now that we have some familiarity with Active Directory, today we're going to learn how to manage Active Directory Certificate Services.
+
+ADCS is a server role in Windows Server operating systems that enables organizations to build a public key infrastructure (PKI) and provide certificate-based services in their network environment.  
+
+Accessing the Lab
+
+Log in to your Windows RDP host machine and then start up and log in to the nested virtual machines if you have not done so already.
+
+If you are having issues, you should reach out to a TA on Slack for assistance.
+
+The Machines
+
+Within our Windows RDP host machine, we have two nested Hyper-V virtual machines:
+
+A Windows 10 virtual machine that has Windows 10 installed on it just like our Windows RDP host machine.
+A Windows Server virtual machine that has the Windows Server 2019 operating system installed.
+
+The Connectivity
+
+Your Windows Azure Labs have already been set up with Active Directory Domain Services installed and configured.
+
+The following are some details on how the machines are logically set up:
+
+Windows Server machine has Active Directory set up on it with the domain, `GoodCorp.net`. This will be the domain that we will be managing and installing ADCS on.
+The Windows 10 machine is connected to the Windows Server Active Directory domain&mdash;it is acting as a Windows client workstation that is set up so that it will receive and execute instructions and policies from the Active Directory server through a trust relationship.
+
+
+
+
+
+02. Public Key Infrastructure 
+
+Active Directory Certificate Services (ADCS) is a server role in Windows Server operating systems that allows organizations to build and manage a Public Key Infrastructure (PKI). A PKI is a framework that enables the secure exchange of information over a network through the use of digital certificates and encryption. While we will learn more about keys in cryptography, Module 11, it's important to have an understanding of it before we learn about ADCS.
+
+PKI is a framework that uses cryptographic techniques, digital certificates, and trusted third-party entities called Certificate Authorities (CAs) to establish secure communication channels, authenticate identities, and protect data integrity and confidentiality.
+Digital certificates, which are at the core of PKI, are electronic documents that bind a public key to an identity (individual, device, or service). They are issued by trusted CAs after verifying the identity of the entity requesting the certificate.
+An analogy for understanding PKI and CAs is to look at how an identity is issued and verified in real life:
+Certificate Authority (CA): This is like the government agency that issues ID cards or passports. The CA is a trusted authority that issues digital certificates after verifying the identity of the requesting entity (individual, device, or service).
+Digital Certificate: This is analogous to the ID card or passport issued by the government. It contains identifying information about the holder (name, photo, etc.) and is digitally signed by the issuing authority (CA) to prove its authenticity.
+Public Key: Just like your photo and name on the ID card are public information, the public key in a digital certificate is data that anyone can use to verify the certificate holder's identity or encrypt data for them.
+Private Key: This is like the personal information or unique identifiers (e.g., passport number) only known to the ID holder. The private key is a closely guarded secret that only the certificate owner possesses and uses to decrypt data encrypted with their public key or create digital signatures.
+Verification Process: When you present your ID card or passport, the verifying party (e.g., airport security, bank teller) checks the document's authenticity by looking for the issuing authority's signature or seal. Similarly, in PKI, the recipient of a digitally signed message or encrypted data uses the sender's public key (from their certificate) to verify the digital signature or decrypt the data, ensuring it came from the legitimate owner of that certificate.
+Revocation: Just as a government can revoke an ID or passport if it's lost, stolen, or expired, a CA can revoke a digital certificate, rendering it invalid for authentication or encryption purposes.
+
+Key Importance of PKI and Digital Certificates
+
+PKI is very important for securing any type of digital transmission. Digital certificates authenticate the identities of users, devices, and services, preventing impersonation and man-in-the-middle attacks.
+
+Remember the CIA triad: Confidentiality, Integrity, & Availability. PKI enforces confidentiality and integrity:
+
+Confidentiality: PKI enables secure encryption of data using the recipient's public key, ensuring that only the intended recipient with the corresponding private key can decrypt the information, protecting it from unauthorized access.
+Integrity: Digital signatures created with a sender's private key and verified with their public key ensure data integrity, preventing tampering during transmission.
+
+In real life, PKI is used all the time without most people being aware of it.
+
+Secure Communications: PKI and digital certificates are essential for secure protocols like HTTPS, enabling secure web browsing, online banking, and e-commerce transactions by encrypting data and authenticating servers.
+Code Signing: Software developers use code-signing certificates to digitally sign their applications, ensuring their integrity and authenticity, preventing tampering, and protecting users from malware.
+Internet of Things (IoT): PKI and digital certificates are crucial for securing IoT devices, enabling secure communication, software updates, and device authentication in IoT ecosystems.
+
+PKI & ADCS
+
+In Windows, ADCS allows the Windows Server (Domain controller) to become a CA that can issue, revoke, and manage digital certificates for users, computers, and services within the organization.
+
+ADCS provides certificate templates that define the purpose, validity period, and other properties of certificates. These templates are used to issue certificates for various purposes like SSL/TLS, code signing, email encryption (S/MIME), smart card authentication, and more.
+
+ADCS has additional benefits:
+
+1. Certificate Enrollment: ADCS offers different enrollment services like web enrollment, network device enrollment, and certificate enrollment web services that allow users, computers, and devices to request and obtain certificates from the CA.
+
+2. Certificate Revocation: ADCS enables revoking compromised or expired certificates through Certificate Revocation Lists (CRLs) and Online Certificate Status Protocol (OCSP) responders.
+
+3. Key Archival and Recovery: Enterprise CAs in ADCS support archiving private keys associated with issued certificates, enabling key recovery in case of loss or compromise.
+
+4. Integration with Active Directory: ADCS integrates seamlessly with Active Directory, storing certificate data and configuration in AD, and using AD user and computer accounts for authentication and authorization during certificate enrollment and management.
+
+5. Role-Based Access Control: ADCS provides role-based access control for CA administration, allowing delegation of specific tasks like certificate issuance, revocation, and CRL management to different groups or users.
+
+6. Automation and Policy Enforcement: ADCS supports automated certificate enrollment through Group Policy, enabling organizations to enforce PKI policies and ensure consistent deployment of certificates across the enterprise.
+
+By providing these PKI capabilities, ADCS enables secure communications, authentication, data integrity, and non-repudiation within Windows Server environments, making it an essential component for implementing robust security measures and meeting regulatory compliance requirements.
+
+
+
+
+03. Install ADCS
+
+We will now install ADCS onto our domain controllers.
+
+1. Open the Server Manager and go to Manage > Add Roles and Features to launch the Add Roles and Features Wizard.
+
+
+2. On the "Installation Type" page, select "Role-based or feature-based installation" and click Next.
+
+
+
+3. Select your Windows server from the pool and click Next.
+
+4. On the "Server Roles" page, select the "Active Directory Certificate Services" role and click Next and 'Add Features'. Click next until
+
+
+
+5. On the "Role Services" page, select the "Certification Authority" role service and click Next, then "Install".
+ 
+
+6. Click on 'Configure Active Directory Certificate Services on the destination server'.
+
+
+7. The credentials should be prepopulated with the user you're logged in as (Administrator). Click 'Next' and select all roles except "Online Responder" for the roles to configure.
+
+
+
+8. Follow the prompts to configure ADCS as an Enterprise Root CA.
+
+
+
+9. Create a new private key for the CA using the default cryptographic, CA name, and validity options.
+
+
+10. Verify the ADCS service is running by opening a PowerShell prompt and using the `sc query certsvc` command, then validate the CA keys with `certutil -verifykeys`.
+
+
+
+04. Templates
+
+ADCS provides a set of certificate templates that define the settings and policies for different types of digital certificates issued. These are some common ADCS certificate templates:
+
+User Certificate Templates
+
+1. User: This template is used for user authentication, typically for smart card logon or virtual private network (VPN) access. It allows binding a user's identity to a certificate for authentication purposes.
+
+2. Authenticated Session: Enables users to authenticate to web servers without storing credentials insecurely in cookies. It facilitates remote user authentication without frequent logins.
+
+3. Email Protection: Used for email signing and encryption with S/MIME. It allows users to digitally sign and encrypt emails to ensure confidentiality and integrity.
+
+Computer Certificate Templates
+
+1. Computer: Allows computers (workstations or servers) to authenticate themselves on the network. It's commonly used for VPN connections, wireless network authentication, and secure communication between computers.
+
+2. Domain Controller: Designed for domain controllers to facilitate secure replication and authentication within the domain. It supports client and server authentication, as well as smart card logon.
+
+3. Web Server: Issued to web servers to enable HTTPS communication and server authentication. It ensures clients are communicating with the legitimate web server.
+
+Code Signing Certificate Templates
+
+1. Code Signing: Used by developers to digitally sign software, scripts, or executables. It allows users to verify the authenticity and integrity of the code before installation or execution.
+
+2. Kernel Mode Code Signing: Similar to the Code Signing template but specifically for signing kernel-mode code or drivers.
+
+Other Templates
+
+1. Administrator: Allows trust list signing and user authentication for administrator accounts. It facilitates account identification and trust list management within the domain.
+
+2. Basic EFS: Used by the Encrypting File System (EFS) to encrypt data on NTFS volumes. Certificates from this template are stored in Active Directory and associated with user accounts.
+
+3. Cross-Certification Authority: Used for cross-certification and qualified subordination between different CAs or domains.
+
+It's crucial to properly configure certificate templates to prevent misuse or exploitation. Misconfigured templates can potentially allow unauthorized certificate enrollment, leading to security risks like privilege escalation, persistence, and impersonation attacks, which we will explore in the final day of pentesting (Unit 16).
+
+We will now continue by focusing on user certificate templates.
+
+
+
+05. Custom Templates
+
+For this activity, you will be setting up a custom certificate template that will be used to authenticate users to a website.
+
+Activity File: 7.4 Active Directory Certificate Services
+
+Note: There is no solution file for this activity as it is more of a walkthrough than a challenge.
+
+
+
+06. IIS Setup with Certificate Authentication
+
+We will set up a website on our ADCS server that will require users to authenticate with a certificate. Requiring certificates to authenticate to a website is a common security configuration for several reasons:
+
+Using certificate-based authentication for a website offers several security advantages compared to traditional username and password-based authentication methods. Here are the key benefits:
+
+- Client and Server Validation: With certificate-based authentication, both the client and server validate each other’s identities. This mutual authentication ensures that both parties are legitimate.
+
+- Impossible to Phish: Since certificates cannot be easily duplicated or phished like usernames and passwords, it significantly reduces the risk of phishing attacks.
+
+- Secure Channel Establishment: Certificates establish a secure channel using SSL/TLS, which mitigates the risk of man-in-the-middle attacks where an attacker intercepts the communication between client and server.
+
+- Combining Factors: Certificates can be used as part of a two-factor authentication scheme, combining something the user has (the certificate) with something the user knows (a password or PIN).
+
+- Private Key Protection: Certificate-based authentication relies on asymmetric cryptography, which is extremely difficult to break. The private key associated with the certificate remains secure on the client’s device.
+
+- Seamless Access: Certificates can be integrated with Single Sign-On solutions, allowing users to access multiple services without repeatedly entering credentials.
+
+- No Passwords Required: Users do not need to remember and manage passwords. The authentication process is automatic once the certificate is installed on the user’s device.
+
+- Difficult to Attack: Since there are no passwords to guess, certificate-based authentication is inherently resistant to brute force attacks and credential stuffing attempts.
+
+Our lab servers already have Microsoft Internet Information Services (IIS) setup, which provides the backend web server structure for the sample website that we will configure authentication for. We will cover how web servers work more in depth in unit 13.
+
+First, see that we cannot access the website:
+
+1. Open a browser in the Windows 10 lab machine and go to the address of the Server, https://192.168.0.5.
+
+2. You should see an access denied page.
+
+
+
+We will now configure IIS to allow certificates.
+
+1. Open 'Server Manager' and select 'Internet Information Services (IIS) Manager.
+
+2. Click on the server node to expand the menu and then click on "Sites", "Default Web Site".
+
+
+3. Click on 'SSL Settings' and check the box to require SSL and set "Client certificates" to "Require". Click "Apply" on the right to apply the changes.
+
+
+
+4. Go back to the Default Web Site home page in IIS Manager and select 'Authentication'.
+
+
+
+5. Enable "Windows Authentication".
+
+6. Select the server node under 'Connections' and then select 'Authentication'. Ensure "Active Directory Client Certificate Authentication" is enabled.
+
+
+
+Now that the website is accepting certificates from Active Directory clients, we can request a certificate and use it to authenticate to the web site.
+
+1. On the Windows 10 machine, search for 'Manage User Certificates' to open the certificates snap-in panel.
+
+2. Right click on 'Personal' > All Tasks > Request New Certificate
+
+
+
+3. Click Next > Next until you get to the 'Request Certificates' page. Select the certificate template you created and click 'Enroll'.
+
+Now that the Windows 10 machine has a certificate, it can authenticate to the website.
+
+1. Open a new browser in 'InPrivate' mode.
+
+
+2. Browse to the server's address again and it should prompt for a certificate.
+
+
+
+3. You should now be able to see the default IIS website.
+
+
+
+While we configured IIS to allow any certificate from an AD user, we could've been more strict on what type of certificate by configuring certain settings:
+
+- Specific Certificate Authorities (CAs) can be configured as trusted issuers for client certificates used in authentication. This allows only certificates issued by certain CAs.
+
+- Add rules to map client certificates based on various properties like subject name, issuer name, enhanced key usage, etc.
+
+- Add rules specifying the required certificate field values (subject, issuer, RFC822 email, etc.) that you want to allow
+
+- Add flags like "compareCaseSensitive" to make the matching rules stricter.
+
+- Ensure only secure TLS protocol versions and cipher suites are enabled on the IIS server to prevent negotiating insecure connections with outdated clients.
+
+By leveraging these configuration options in IIS, you can enforce strict validation rules on the type of client certificates allowed for authentication based on the issuing CA, certificate properties, revocation status, and more. This enhances security by only trusting certificates meeting your specific criteria.
+
+07. Active Directory HardeningTemplates
+
+For this activity, you will use what you learned in lessons 3 & 4 to harden the default Active Directory installation.
+
+Activity File: 7.4 Active Directory Hardening
+
+Note: There is no solution file for this activity as it is more of a walkthrough than a challenge.

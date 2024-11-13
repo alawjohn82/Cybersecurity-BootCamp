@@ -1,0 +1,112 @@
+Activity File: Creating Group Policy with Group Policy Objects
+In this activity, you will continue your role as a Windows system administrator managing Active Directory for Good Corp, Inc.
+You need to create Group Policy Objects (GPOs) to enforce policies for users.
+
+
+You are tasked with creating a Group Policy Object for the Sales OU that will limit the options they have to Windows Settings.
+
+
+Make sure you are using your nested Windows Server machine for this activity.
+If you followed along with the demo, you need to unlink the No Control Panel panel from the Sales OU as it may interfere with your activity.
+Instructions
+Create the GPO. Navigate to the Group Policy Management tool.
+
+
+The Group Policy Management tool is similar to the Active Directory Users and Computers tool.
+
+
+If you don't see the Sales OU, expand the folders under the GOODCORP.NET domain.
+
+
+Name the GPO Limit Settings.
+
+
+Right-click the GPO to Edit... its policies.
+
+
+Find the policy you need under User Configuration > Policies > Administrative Templates > Control Panel. The policy you're looking for is called Settings Page Visibility. This policy is not in a subfolder in Control Panel.
+
+
+Set the policy to Enabled.
+
+
+Under Settings Page Visibility, enter showonly:about;themes.
+
+
+Apply and accept these changes.
+
+
+After you have enabled the policy, link the GPO to the Sales OU.
+
+
+Add the Sales group to the Remote Desktop Users group, if you haven't already.
+
+
+Open the Active Directory Users and Computers menu.
+
+
+Expand your GC Users organizational unit.
+
+
+Select the Sales sub-organizational unit. The Sales group will appear in the right-side pane.
+
+
+Right-click that Sales group and select Add to a group....
+
+
+Under the Enter the object names to select area, enter Remote and click Check Names.
+
+
+Click the Remote Desktop Users and click OK.
+
+
+Click OK again.
+
+
+Refresh these policy and group changes on the Windows 10 machine.
+
+
+Open a PowerShell window and enter:
+
+
+$Cred = Get-Credential. 
+You should get a window asking for credentials. For the username, put in
+GOODCORP\Administrator
+ and the password is 
+Passw0rd!
+
+
+Then click ‘OK’
+In the same PowerShell Window, run the following command: 
+Invoke-Command -ComputerName "192.168.0.10" -ScriptBlock { gpupdate /force } -Credential $Cred
+
+After a few seconds, you should see the message
+Updating policy...
+Computer Policy update has completed successfully
+User Policy update has completed successfully.
+This means the machine has now pulled the latest group policies.
+Switch over to the WIN10 machine in CloudLabs.
+Take a quick moment to look at the default Windows Settings.
+
+
+Click the Start menu, then click the cogwheel icon to launch the Settings menu.
+
+
+You don't have to do anything here, but notice the limited settings.
+
+
+Test the Group Policy changes as Bob. Verify that Bob's account has limited access to Windows Settings by doing the following:
+
+
+Click the Windows button in the bottom-left and then click the Settings icon.
+
+
+If you created the GPO properly, you should only see two entries there: System and Personalization.
+
+
+This indicates that the Group Policy Object was successfully applied. The standard Windows Settings screen has many more options.
+
+
+Know that system administrators will often restrict access to various operating system settings to prevent users from making irreversible or potentially dangerous changes to their system.
+
+
