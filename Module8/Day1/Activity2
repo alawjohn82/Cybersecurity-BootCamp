@@ -20,3 +20,26 @@ Bonus
 Create a DMZ.
 Use lines to separate the DMZ, LAN, and WAN.
 Add the server and load balancer to the DMZ and place the rest of the devices in appropriate locations.
+
+
+Solution Guide: Network Devices
+To complete this activity, you had to design a network layout for the new Shanghai office using draw.io.
+
+The following solution is a general guideline. There are many ways to design the Shanghai network with the required devices. Use the following as a guide for reviewing your design.
+It's important that your design includes the following characteristics:
+The internet is protected by a firewall.
+The load balancer is placed after the firewall.
+The switches come after the router.
+The computers come after the switches.
+The servers can be placed in many places, as long as they are behind the load balancers.
+There is a firewall between the wireless access point and the network.
+The firewall for the wireless access point connects somewhere in the network (behind the router).
+
+Bonus
+Add the following:
+Add a line indicating the separation of the DMZ, LAN, and WAN.
+Place devices in their appropriate areas.
+
+
+
+
