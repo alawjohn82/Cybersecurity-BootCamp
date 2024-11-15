@@ -1,0 +1,522 @@
+8.1 Student Guide: Introduction to Networking
+Overview
+Today's class is the first part of our introduction to networking. You will learn about the client–server model and use this knowledge to assess scenarios and identify clients, servers, requests, and responses. You will learn network design and network devices and use this to map your own network using the web tool draw.io.
+After studying these foundational networking concepts, you will focus on network IP addressing, private and public IP addresses, and subnetting. The class concludes by covering similar addressing concepts as they apply to the internet, including DNS and URLs, and their security implications.
+Class Objectives
+By the end of class, you should be able to:
+Identify clients, servers, requests, and responses in network communications.
+Identify three benefits of AI/ML for networking.
+Design a conceptual network made of various network and network security devices.
+Convert binary numeric representations to readable IP addresses and determine which servers the IP addresses belong to.
+Modify hosts files to circumvent DNS and redirect the access of a website.
+Lab Environment
+
+You will use your own computer and the Networking Lab for this week's activities.
+Slideshow
+The lesson slides are available on Google Drive: 8.1 Slides
+
+
+
+
+
+01.Welcome and Introduction 
+We will cover the following concepts in today's class:
+Clients and servers, requests, and responses
+Network design
+IP addresses and their binary and clear text representations
+DNS and DNS hijacking
+
+02. Instructor Do: Intro to Networks and Network Security 
+This week we'll be switching gears and focusing on one of the most important topics in cybersecurity: computer networking.
+While it's pretty simple to pull up a webpage on your browser or send an email, many complex technologies and systems go into making this magic happen.
+A computer network is defined as multiple devices connected together to shared resources or services.
+Devices, also known as nodes, can be computers, laptops, cell phones, printers, servers, etc.
+Resources can be webpages, emails, images, data files, etc.
+Services are computer programs that have a function, such as processing an online order or doing a calculation.
+Computer networking is essential for the following technical roles, among others:
+Security operations center (SOC) staff: SOC staff commonly diagnose and troubleshoot network-related security issues and attacks. Understanding network devices and design helps them quickly resolve and identify issues.
+Network security engineer: Network security engineers may work on the design of a company's network architecture to protect their organization from security risks.
+Penetration tester: Penetration testers often test for vulnerabilities in a company's network. Understanding network design and common network vulnerabilities is core knowledge for penetration testers.
+A defined model is required for devices to share resources.
+
+
+Client–server Model
+The client–server model is a network computing model that defines how resources and services are shared across a network. 
+In this model, the client requests a resource or service.
+The server hosts the resources and services that the client is requesting.
+The server will return the requested resource or execute the service requested.
+For example, you go on Facebook to check your friend's vacation photos.
+Your web browser is the client requesting the resource—your friend's vacation photos.
+Facebook's web server is the server that hosts the image files of your friend's vacation photos.
+Facebook's web server is responsible for returning the requested photos to your web browser.
+This two-way conversation between the client and server is known as the request and response method of device communication. 
+The request is the process in which the client sends a message to a server asking for a resource or to run a service.
+The response is sent to the client after the server receives and processes the request.
+The response message can be:
+An acknowledgement of the request
+The resource requested
+An error message
+Using the Facebook example:
+The browser makes a request: "Facebook, can you please get me my friend's vacation photo?"
+Facebook's web server provides a response: "Yes, here is your friend's vacation photo."
+The client–server model doesn't mean a "one client, one server" relationship. Typically, servers receive resource requests from many clients.
+For example, if other friends go on Facebook to view your friend's vacation photos, each friend uses a different client (browser) to pull the same resource (vacation photo) from the single Facebook web server.
+Introduction to Network Security
+While computer networks provide many advantages, many network security risks and threats exist within them. As we cover new tools and concepts, you will also be introduced to relevant inherent security risks.
+Network security is defined as the practices and policies used to protect and monitor computer networks' resources against threats and risks.
+Network security threats and risks can include:
+Unauthorized access into networks
+Denial of service (DoS) attacks
+For example, an attacker floods your network with traffic to make your resources unavailable.
+Eavesdropping
+Data modification
+For example, an attacker steals your data and modifies it without your knowledge.
+Network security professionals design and implement practices and policies to protect against these threats and risks.
+As security professionals, you will often be asked to not only monitor and identify potential network security threats and risks, but also to determine the best way to mitigate them.
+In the next exercise, you will see several types of network security attack scenarios and be asked to determine the client, server, and associated request and response.
+
+
+
+03. Student Do: Network Security Activity 
+
+
+In this activity, you will play the role of a security analyst at Acme Corp.
+Several suspicious activities have occurred on Acme's products and systems.
+For each suspicious activity, you must list the client and servers and then describe the request and response in simple terms.
+Activity File: Network Security
+
+
+
+04. Review: Network Security Activity 
+
+
+
+05. Networking and Artificial Intelligence 
+So far, we have covered the basics as to what is networking and network security.
+Due to the growth of emerging technologies such as cloud and hybrid work environments, there are many more complexities involved in protecting these networking environments. In addition to these complexities, there are also limited human experts familiar with protecting these systems from network threats.
+Organizations try to overcome these challenges by leveraging Artificial Intelligence (AI) and Machine Learning (ML).
+AI/ML can assist networking challenges through the following:
+Troubleshooting Network Issues:
+For example, determining why a network is experiencing latency, or why one device can not connect to another. While  network technicians previously had to manually research the cause of these issues, AI/ML can help quickly determine the root to speed up the resolution.
+Self-Resolving Networking Issues:
+For example, if additional bandwidth is required to assist with network performance, AI/ML can determine the optimal bandwidth required and automatically make adjustments without human intervention.
+This helps expedite the resolution as no human assistance is required.
+Organizational Network Cost Savings:
+Organizations can use AI/ML to evaluate their employees and system's network usage, thus helping networking employees determine the optimal settings for performance while minimizing costs.
+In our next lesson, we will introduce the networking and network security devices that assist with sharing resources between the client and the server. As we introduce these devices, we will point out when and how some of them use AI/ML to assist with these challenges.
+
+
+
+06. Instructor Do: Network Devices 
+Up to this point, we have been looking at the network devices (or nodes) like connect-the-dots. When these nodes are in their proper order, the links between machines are established and the network functions.
+As we will soon learn, these nodes are actually various devices, each with complex responsibilities.
+For example, even if all devices are connected, how are resources directed correctly and efficiently from client to server and server to client?
+In the following section, we will examine various network devices and the roles they play in connecting and directing the data transported across networks.
+Understanding how network devices work and the connectivity function they provide is a critical skill for any security professional.
+For example, if a security professional is alerted that the local network is being attacked by a flood of requests, it is crucial to understand where the attack has taken place and what network or network security device can mitigate the attack.
+LANs are private networks that have interconnected computers within a small geographic area. On the other hand, WANs are much larger networks that connect multiple LANs.
+Primary Network Devices
+You will now cover the primary network devices found on LANs and WANs.
+Routers:
+A router is a networking device that forwards (routes) resources to other networks.
+A router can connect two different LANs, two different WANs, or a LAN to a WAN.
+Routers are commonly used to connect your home network (a LAN) to the internet (a WAN).
+Routers can use AI/ML to determine optimal routes to reduce latency.
+Switches:
+A switch is a networking device that forwards resources within a network. In other words, switches connect devices in a LAN.
+Switches are typically used in large businesses that have many computers.
+Switches typically feed into routers.
+Switches are intelligent devices, which means they can be programmed to direct resources to certain computers.
+Switches can use AI/ML to become energy efficient by disabling any unused connections in real time.
+Hubs:
+A hub serves the exact same purpose as a switch, except it is not an intelligent device.
+Therefore, hubs cannot be programmed. Instead, they direct a copy of the exact same resource to all computers they are connected to.
+Hubs are less secure than switches because they direct resources to all computers, even those that do not need them.
+Hubs are outdated and no longer commonly used.
+Bridges:
+A bridge is basically a switch that only has two connections—one in and one out.
+Bridges are often used to tie two LANs together.
+Network interface controller (NIC):
+An NIC is a type of computer hardware that connects a computer to a computer network.
+An NIC is usually a circuit board or chip installed on a computer.
+Each computer must have an NIC to receive or send resources.
+NICs can either be wired or wireless:
+Wired: Data is transmitted through physical wires.
+Wireless: Data is transmitted with an antenna to provide wireless connections, designed primarily for WiFi.
+Modem:
+A modem converts resource data into a format that the next type of connection can understand.
+In simple terms: Your computer and internet service provider (ISP) speak different languages. Your computer speaks "digital" and your ISP speaks "analog."
+A modem translates between your computer and the ISP so they can understand each other.
+Modem is short for modulator-demodulator.
+Wireless access points (WAPs):
+WAPs give wireless devices the ability to connect to a wired network.
+All-in-one devices:
+All-in-one devices could have modems, WAPs, routers, and more all built into a single device. Most students should be familiar with these common household devices.
+The advantage is that they are easy to use, as they require less equipment.
+The disadvantage is that they are a single point of failure, and it can be difficult to troubleshoot where an issue in a network transmission is.
+Network Security Devices
+While these devices work to forward and process data at its intended destination, there are also network devices that provide security features to protect organizations' resources.
+Firewall:
+A firewall is an intelligent network security device that monitors incoming and outgoing traffic based on security rules.
+Firewalls are typically placed right at the entry point of a LAN. This placement protects the confidentiality and integrity of resources in that LAN.
+There are many types of firewalls and specific firewall functionalities, many of which utilize AI/ML, which will be covered in more detail in future lessons.
+Load balancers:
+A load balancer is an intelligent network security device that distributes incoming network traffic across multiple servers.
+A load balancer ensures no single server has to handle too much traffic.
+Load balancers help protect the availability of resources.
+For example, if a server receives more resource requests than it can handle, it may go down or fail to handle a resource request.
+Load balancers are typically placed right after a firewall.
+Demilitarized zone (DMZ):
+A DMZ is a smaller subnetwork, usually within a LAN.
+DMZs add an additional layer of security to an organization's LAN, protecting secure data in the internal networks.
+A DMZ typically has its own network security devices, such as firewalls, that attempt to detect network attacks before they access the internal networks.
+We have just covered many of the network and security devices that organizations use to build their network.
+Network Visualization
+A common task for network and security professionals is to visually design a setup before purchasing, installing, and configuring a network with these devices.
+Visually designing a network can assist with the following:
+Making networks more efficient, since proximity of certain devices can reduce latency
+Avoiding the creation of a single point of failure
+Ensuring private resources are protected from unauthorized sources
+We will use the free web tool draw.io to practice designing a basic network with the following devices:
+Two computers
+One switch
+One router
+One firewall
+One representation of the internet
+draw.io Demo
+Open up your web browser and go to drawio.com.
+draw.io is a free web tool that can be used to visually design a network.
+Get started with draw.io, complete the following steps:
+Select a location to save diagrams to (for example Device).
+
+Then, there should be a prompt to either Create New Diagram or Open Existing Diagram, select Create New Diagram and then click Blank Diagram.
+
+Give the diagram a name, Network1, and click Create.
+
+Search for network switches in the left-hand side search shapes box.
+
+This is where you can find shapes for your network design.
+Note the different devices that came up from the search:
+On the left-hand side are all the devices and shapes used to create a network design.
+Hover your mouse over some of the devices and shapes. Their names should display.
+Note several devices we've covered in class, such as routers, switches, computers, and firewalls.
+
+Add a device to the design by simply dragging and dropping it in the gridded space.
+Let's start by adding the required devices for our LAN:
+What does a switch do?
+A switch routes traffic among the computers in the LAN.
+Search for computers and add two computers to the grid.
+Since we need to connect the switch to the computers, we will use the "Connection Tool" from the top toolbar to connect each computer to the switch.
+
+Note how to drag the connecter from the device to the switch.
+The lines signify connections.
+
+Now, we will add a router that can send traffic outside of the LAN to the internet.
+Search for router and add a router to the diagram.
+Explain that the router needs to connect to the switch, and add a connecting line between those devices.
+Before we add the internet, we want to add a firewall between the router and the internet to protect our LAN.
+Add a firewall and connect it to the router.
+Include a representation of the internet and connect it to the firewall.
+
+Finally, note that network and security professionals like to visualize the division between the LAN and WAN.
+Add a line to create a separation between the LAN and WAN at the firewall.
+Select "Straight Line Tool" from the top toolbar.
+You can add text to the design by double-clicking anywhere on the diagram and selecting the Text icon from the window and entering your text.
+Add text to indicate where the LAN and WAN are.
+
+This is a very basic network design. The next exercise will give you an opportunity to design a more complex network with several more devices.
+
+
+
+07. Network Devices Activity 
+
+
+In this activity, you will continue to play the role of a security analyst at Acme Corp.
+Acme Corp just opened a new office in Shanghai, China.
+Acme Corp has a list of employee computers and network devices to have in the Shanghai office.
+Your task is to design the network layout for the Shanghai office using draw.io.
+Additionally, you need to add network security devices to the design to protect against a network attack.
+
+08. Review: Network Devices Activity 
+
+09. Break 
+
+10. What's my (Network) Address? 
+Computers and networks don't communicate the same way people do. They use a language called binary.
+Everything we see on our computers, whether it's numbers, words, images, videos, or music, is all a representation of binary data.
+Binary
+At the lowest level, computers communicate with electrical signals.
+The electrical signals have two states: on and off.
+Binary is a two-digit numerical system that computers use to communicate:
+1 signifies an on signal.
+0 signifies an off signal.
+Computers transmit these electrical signals from one computer to another, and the electrical signals get converted into binary data.
+Once the receiving computer receives the binary data, it gets translated into a form that humans can understand.
+For example, if one computer wants to transmit 1 2 3 4 5 to another computer, it can't simply transmit these five numbers as we read them, since computers only speak in binary.
+The computer would transmit the binary data 00000001 00000010 00000011 00000100 00000101, which represents 1 2 3 4 5:
+00000001 = 1
+00000010 = 2
+00000011 = 3
+00000100 = 4
+00000101 = 5
+The conversion of this binary data into a numerical representation of 1 2 3 4 5 is one type of conversion called "binary to decimal." Receiving computers use other conversions as well, such as:
+Binary to ASCII:
+ASCII is primarily used to convert binary to readable text that humans understand.
+For example, 01101000 01101001 represents hi.
+Binary to hexadecimal:
+Hexadecimal, or hex, shortens binary data to letters and numbers.
+For example, 11000111 00000110 10100110 11100110 11110110 01000110 represents C7 6 A6 E6 F6 46.
+Binary to octal:
+Octal is another way to shorten binary data with numbers.
+For example, 11000111 00000110 represents 307 6.
+Octal isn't as widely used as the others, but it is important to understand that binary can be converted into multiple formats.
+Binary and Network Addresses
+Binary data is relevant to this module because it is used by networks to identify network addresses to determine where to send data.
+A network address is similar to a mailing address. Without a mailing address, we wouldn't know where to send mail. Likewise, we need a specific address to send our data over networks.
+The network addresses we'll look at today are known as IP addresses.
+Internet Protocol (IP) is defined as an address as a numerical network address associated with a device such as a computer, printer, router, or server.
+Every machine has an IP address. You can easily view these by going to WhatsMyIP.org.
+Check your own IP address.
+IP addresses are managed by a global organization known as the Internet Assigned Numbers Authority (IANA).
+The IANA has suborganizations responsible for the distribution of IP addresses.
+Two primary versions of IP addresses are distributed today. The main version is IPv4 (IP version 4).
+IPv4
+IPv4 IP addresses are made up of four octets separated by decimals. These octets are the conversion of eight binary bits or one byte to standard decimal numbers.
+A bit is simply a single binary digit—a one or a zero.
+A byte is eight bits strung together.
+For example:
+1 = one bit
+10110111 = one byte
+Use the following IP address as an example: 10.0.3.254.
+Note the following question, "If an IP address is written as four octets separated by decimal points, why is the first part of this address 10?"
+10 is the human-readable decimal representation of the first binary octet.
+10 in binary is 00001010.
+networks communicate in binary, so they will read 0001010. But when the number is displayed for humans to read, it is converted to 10.
+The second octet value of 0 has a raw binary value of 00000000.
+The third octet value of 3 has a raw binary value of 00000011.
+The fourth octet value of 254 has a raw binary value of 11111110.
+To summarize: Networks communicate in binary. When they read the IP address, they read 00001010.00000000.00000011.11111110. That would be difficult for humans to read, so when displayed, it is converted to decimals as 10.0.3.254.
+Each octet can range from 0 to 255. This is because:
+The lowest value of eight bits is 00000000, which equals 0.
+The highest value of eight bits is 11111111, which equals 255.
+All these conversions can be tricky. Fortunately, there is a web tool that easily converts binary to IP and IP to binary.
+Browserling IP to binary converter
+Browserling binary to IP converter
+Simply enter the IP address or the binary representation and click "Convert."
+IPv6
+There is another version of IP addresses called IPv6 (IP version 6).
+IPv6 was created due to concern about the lack of possible addresses provided by IPv4.
+IPv6 addresses are divided into eight groups of two bytes. However, these bytes are not binary or decimal. They use letters and numbers in hexadecimal (or hex) format. We will cover this number format in greater detail later.
+An example of an IPv6 IP address is 2001:0db8:85a3:0000:0000:8a2e:0370:7334.
+IPv6 has not yet been widely adopted. Many devices need to be updated before accepting and sending traffic with IPv6. For this reason, we won't discuss IPv6 in more detail, but it is important to know that there are two possible IP versions.
+Public and Private IP Addresses
+For either IP version, IP addresses are classified into two types: private and public.
+Public IP addresses are any addresses that can be accessed over the internet.
+Advantage: Public IPs are beneficial because their resources are accessible over the internet.
+Disadvantage: Not all devices should be accessible over the internet, as this access potentially exposes devices to malicious actors.
+Public IP addresses are typically assigned in IP ranges by an ISP.
+IP ranges are groups of IP addresses in which the numbers are typically sequential.
+For example, the IP range 108.0.0.1 - 108.0.0.3 includes the IPs 108.0.0.1, 108.0.0.2, and 108.0.0.3.
+Private IP addresses are addresses that are not exposed to the internet. Instead, they are typically located within a LAN.
+Advantages: Private IP addresses are beneficial because they aren't publicly accessible and are therefore more secure.
+They can also be reused, as long as they are in different LANs. Private IPs can't conflict across different networks.
+Disadvantage: They are not directly accessible over the public internet.
+Private IP addresses are assigned by the network administrator of the LAN to which they belong.
+Three IPv4 ranges are saved as private addresses and are only used for private addressing:
+Starting IP
+Ending IP
+IP Addresses Available
+10.0.0.0
+10.255.255.255
+16,777,216
+172.16.0.0
+172.31.255.255
+1,048,576
+192.168.0.0
+192.168.255.255
+65,536
+
+
+All addresses not in these three ranges are considered public.
+Subnetting
+We know that an IP address is the address of a user's device. These addresses have to be assigned manually by the user or organization that manages their local network. But how do organizations decide what IP addresses are assigned?
+Organizations are typically provided a range of IP addresses that they distribute across their departments and devices.
+Organizations often group devices together on a network for organizational and efficiency reasons. For example, a company groups together servers designated for finance and other servers designated for marketing.
+These groups of devices are given a specific range of IP addresses.
+This process of breaking up the IP address range into smaller, more specific networks for different groupings of devices is called subnetting.
+For example, if a company has 100 new IP addresses to distribute, it can assign 50 to finance and 50 to marketing by subnetting the IP range.
+Classless Inter-domain Routing (CIDR)
+To subnet, we don't have to list IP addresses in a range one by one. Instead, we use a format known as CIDR to group addresses together into a subnet.
+The CIDR format is made of two numbers: an IP address and a number indicating the range of IPs and number of IPs available. This two-number combination is referred to as either slash notation or CIDR notation. This notation helps to identify the network portion, or network ID, of a given IP address. It also helps to understand what host IDs are available for a given subnet.
+For example, 192.243.3.0/24:
+The prefix, or the number before the slash, is 192.243.3.0. This is the IP address.
+Using the /24, we know the 192.243.3 portion, or the first 3 octets, of the preceding address is the network ID.
+The suffix, or the number after the slash, is 24. This number indicates both the range of IPs and the number of IPs available.
+The last octet is used for hosts on the network, referred to as the host ID, with the exception of 0 and 255.
+The 0 is reserved for the subnet ID.
+The 255 is reserved for the broadcast.
+This leaves 1–254 available for hosts on the subnet.
+This example CIDR says that everything after the first 24 bits is variable.
+An IP address is always four octets, or 32 bits. (Four sets of eight bits: 8 x 4 = 32).
+In the previous example, the octets 192, 243, 3, and 0 are each eight bits.
+The CIDR suffix number ranges from 0 to 32. This number indicates how many of the IP address bits are static.
+When we know how many bits are static, we know the remaining bits are variable.
+These variable bits create the range.
+In the previous example of 192.243.3.0/24, 24 means:
+The first 24 bits (192.243.3), or first three octets (3 x 8 = 24), of the IP address are a static number assigned to the network. These octets will not change.
+This also tells us that the subnet mask for the network will be 255.255.255.0. As stated earlier, these numbers are derived from binary conversions of eight-bit numbers.
+The number 24 used in this CIDR notation comes from the binary conversion of the first 24 bits.
+If we take the first eight bits used in the first octet and convert it to binary, 11111111 is the number.
+The binary number 11111111 converted to decimal is 255.
+Since all the bits in the next two octets are also being used, the numbers are 11111111 and 11111111.
+The end result can be written as 11111111.11111111.11111111.0 or 255.255.255.0 to indicate the subnet mask.
+The last 8 bits (.0) are variable. The numbers 1–254 are available for the host IP addresses.
+Therefore, there are 256 available IP addresses in the range 192.243.3.0/24. As mentioned, the 0 and 255 are reserved for the subnet ID and broadcast.
+In other words, 192.243.3.0/24 means the range of IPs actually available for hosts is 192.243.3.1–192.243.3.254.
+The lower the suffix, the higher the number of host IP addresses available to use.
+For example, /0 indicates roughly 4.2 billion available IP addresses or every single possible IP address combination.
+The higher the suffix, the lower the number of host IP addresses available to use.
+For example, /32 indicates one IP address available.
+The following image illustrates the relationship between the suffix indicator and the range of IP addresses:
+
+While it is important to understand the concepts behind CIDR and subnetting, there are online tools you can use to easily calculate an IP address range.
+Go to the online CIDR-IP Range Calculator on your browser: ipaddressguide.com/cidr.
+This website can easily show the range of IPs by using CIDR notation. It can also create a CIDR notation from a range of IP addresses.
+Put in the CIDR example of 192.243.3.0/24.
+Note that it returns the range and count of host IP addresses as follows:
+
+
+
+
+First IP
+Last IP
+Total Host
+192.243.3.0
+192.243.3.255
+256
+
+
+
+
+MAC Addresses
+Next, we'll look at another important network address used to route traffic within a LAN.
+Computers must have an NIC to transmit or receive data.
+Each of these NICs has a network address called a media access control address (MAC address).
+Note the following about MAC addresses:
+MAC addresses are burned-in addresses assigned to network interface cards (NICs) and must be unique to each NIC located on the same network.
+A MAC address is a string of six sets of alphanumeric characters, each commonly separated by colons. The first 24 bits (first six characters) of a MAC address are referred to as the Organizationally Unique Identifier (OUI). The OUI is used to identify the vendor, manufacturer, or organization associated with the NIC. Companies like Apple, Cisco, and Microsoft all have their own unique OUI numbers assigned to them that identify their devices on a network.
+For example, in 00:0a:95:9d:68:16, the first 24 bits, 00:0a:95, identify that this address indicates that it is an Apple NIC. Understanding that the MAC address can also indicate the manufacturer of network devices can be helpful. It provides an ability to identify devices that are located on a network.
+Websites or tools, like Wireshark, can be used to help identify the organization associated with an OUI.
+Switches use MAC addresses within a LAN to direct the traffic to specific devices.
+We will cover how switches obtain the MAC addresses of their device in the next lesson.
+Note that the next exercise will give you an opportunity to convert raw binary numbers into an IP address and to analyze a list of CIDRs and determine their IP ranges.
+
+
+
+11. Network Addressing Activity 
+
+
+In this activity, you will continue to play the role of a security analyst at Acme Corp.
+Your security manager identifies the potential hacker that works at Acme Corp. Your manager is also capturing the potential hacker's traffic. They believe the hacker is accessing secret internal resources.
+While your security manager is able to capture the server IP address that the hacker is accessing, they are only able to capture the raw binary traffic.
+Your task is to convert the binary traffic into an IP address, determine if it is a public or private address, and compare the IP to a list of Acme's servers to see which system the hacker is trying to access.
+Activity File: Network Addressing
+
+12. Review: Review Network Addressing Activity 
+
+
+
+13. Addresses and the Internet 
+We just covered how network addresses assist with directing network traffic to its final destination.
+When you visit a website on a browser, a similar process takes place.
+For example, if you need an image from Facebook, your computer browser (the client) needs to get the image from Facebook (the server). Facebook's IP is 31.13.65.36.
+Domain Name System (DNS)
+It would be challenging to remember the IP 31.13.65.36 every time we wanted to visit facebook.com.
+Thankfully, we just have to remember "facebook.com," because the DNS translates the domain of the website (facebook.com) into an IP address (31.13.65.36).
+DNS is like the phone book of the internet.
+When you visit a webpage on your browser, your browser is looking up the associated IP address of the domain behind the scenes.
+This automated process is called the DNS lookup.
+The DNS lookup process is "behind the scenes" and made up of several different processes:
+When a website is entered in a browser, the browser will check DNS caches to see if they already have the DNS translation of the domain's IP address stored.
+The caches are searched in ascending order of scope, starting at your browser's DNS cache and ending, if necessary, at the top-level domain DNS cache. We'll cover each cache in sequential order now.
+Note the sequence of the DNS lookup process:
+When a website is entered into a browser, the browser first checks its own DNS cache to see if the translation already exists for that particular website.
+Note that each browser on a device, for example Google Chrome or Firefox, may have its own independent DNS cache. The cache in one browser can have differing entries from another browser on the same system.
+If there is no record of that domain in the browser's DNS cache, it will move through the following steps until it finds the translation.
+It will look in the operating system's DNS cache. The operating system's DNS cache is locally on the system. Entries get loaded by resolving sites and get loaded from a stored file called the hosts file.
+Entries in the hosts file can override other sources.
+In Windows, it is located at C:\Windows\System32\drivers\etc\hosts.
+In Linux, it is located at /etc/hosts/.
+If the domain is not in the local cache, the operating system will check its configured source for DNS requests.
+DNS sources can be an ISP.
+Enterprise systems often use a locally configured DNS server.
+If the domain is not resolved, requests will be sent up the DNS hierarchy until it is able to be resolved or time out, possibly reaching a top-level domain (TLD) to determine the authoritative server for the requested domain name.
+The TLD is the highest point of the internet's DNS hierarchy.
+TLDs are the last part of the domain name of the website following the dot (".").
+Examples of TLDs are com, net, org, and biz.
+The TLD of facebook.com is com.
+TLDs are responsible for holding all the DNS translations for all domains within their TLD.
+Finally, the TLD will pass the DNS translation back to the ISP, then to the operating system cache, then to the browser.
+All of these systems will now store that DNS translation in their own DNS cache, meaning the next time this domain is looked up, this lookup process won't be necessary.
+Uniform Resource Locators (URLs)
+A domain is the website we access for resources, and the resources we're requesting are typically at a specific location within that domain.
+For example, if we are viewing a picture from Facebook, the picture likely isn't located at the URL facebook.com. It is likely at a specific location, such as facebook.com/photos/catpicture.jpg.
+The resource is located in the URL. Cover the following about URLs:
+A URL is the full address of a resource on the internet.
+Like file structures, URLs have a specific syntax indicating where to find the specific resource being requested.
+The syntax is scheme://subdomain.domain.TLD/path/filename.
+For example: https://www.facebook.com/photos/catpicture.jpg.
+https: The Hypertext Transfer Protocol (http) is the scheme indicating a file on the internet.
+www: The subdomain of facebook.com.
+facebook: The primary domain.
+.com: The TLD.
+/photos/: The path where the resource is located.
+catpicture.jpg: The resource or file being requested.
+The web server uses the URL to determine the exact location of the resource being requested, then return this resource back to the client—the browser.
+DNS, URLs, and Security
+While DNS and URLs provide many benefits for accessing resources from the internet, these technologies also introduce security risks.
+DNS caches indicate where to request the resources from, based on the domain being accessed.
+Therefore, if a hacker is able to manipulate the DNS cache, they can trick and exploit a user's request by returning a domain or resource that was not originally requested.
+For example:
+A hacker owns a malicious site located at the IP 137.74.187.102.
+The hacker accesses your hosts file DNS cache and updates a record that makes browser requests for facebook.com go instead to 137.74.187.102.
+Now, every time you go to facebook.com, you are redirected to the hacker's malicious website.
+This process is called DNS hijacking, a type of network attack that exploits DNS vulnerabilities to divert web traffic away from legitimate servers and toward fake or malicious servers.
+DNS Hijacking Demonstration
+Now you will demonstrate the process of DNS hijacking using the previous example.
+Open up your terminal.
+On the Linux server, the hosts file is located at /etc/hosts.
+Run cd /etc.
+Run ls to confirm there is a file called hosts.
+Open up the file using nano.
+Run sudo nano hosts.
+The hosts file is where the DNS translation occurs on your Linux operating system.
+The syntax for adding in a record: [IP address] [domain].
+Add in the following record: 137.74.187.102 krebsonsecurity.com.
+
+Save the file:
+Hit Ctrl+X then Y then press Enter.
+All browser requests for krebsonsecurity.com on your operating system will now be directed to the IP address 137.74.187.102.
+Pull up a browser and entering krebsonsecurity.com. The page displayed obviously isn't krebsonsecurity.com.
+
+Note: You may have to override a few browser warnings.
+
+Security professionals must understand how DNS hijacking works.
+For example, a hacker can use this attack to direct users to malicious phishing sites that look exactly like real sites, but are designed to capture users' credentials.
+The hosts file can also be edited for non-malicious purposes, such as preventing users from accessing certain social media sites.
+The next exercise will give you an opportunity to do DNS hijacking by editing a hosts file to prevent hackers from accessing certain websites.
+
+
+
+14. DNS Hijacking Activity 
+
+Activity file: DNS Hijacking
+In this activity, you will continue to play the role of a security analyst at Acme Corp.
+In the previous activity, you determined that the hacker is trying to access Acme Corp's trade secrets.
+Acme Corp is concerned the hacker may try to access a website called acmetradesecrets.org. Acme must prevent the hacker from accessing this website.
+Your task is to create and test a DNS spoof record that will redirect any hacker trying to visit acmetradesecrets.org to another website.
+This will first be tested on your machine, but later it will be added to the hacker's computer.
+
+15. Review: DNS Hijacking Activity 
+
+
