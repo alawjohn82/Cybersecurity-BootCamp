@@ -1,0 +1,47 @@
+Module 8 Day 2: OSI Layers
+Activity File: OSI Layers
+In this exercise, you'll continue to play the role of a security analyst at Acme Corp.
+Analyze 10 suspicious network-related activities that occurred at Acme Corp and may be associated with Sally Stealer.
+Your task is to document at which OSI layer each of these situations occurred to help the networking team pull the necessary logs for investigation.
+Instructions
+Review the list of 10 suspicious activities and determine which of the seven OSI layers each falls under:
+A networking cable was cut in the data center and now no traffic can go out.
+A code injection was submitted from an administrative website, and it's possible that an attacker can now see unauthorized directories from your Linux server.
+The MAC address of one of your network interface cards has been spoofed and is preventing some traffic from reaching its destination.
+Your encrypted web traffic is now using a weak encryption cipher, and the web traffic is now vulnerable to decryption.
+The destination IP address was modified and traffic is routed to an unauthorized location.
+A flood of TCP requests is causing performance issues.
+A SQL injection attack was detected by the SOC. This SQL injection may have deleted several database tables.
+A switch suddenly stopped working, and local machines aren't receiving any traffic.
+An ethernet cable was disconnected, and the machine connected isn't able to receive any external traffic.
+Traffic within the network is being directed from the switch to a suspicious device.
+
+
+
+Solution Guide: OSI Layers
+The goal of this exercise was to practice identifying what types of activities, protocols, and devices exist at each OSI layer.
+Completing this activity required the following steps:
+Reviewing each recent suspicious network-related event that occurred at Acme Corp
+Determining at which OSI layer each of the incidents occurred
+
+A networking cable was cut in the data center, and now no traffic can go out.
+Solution: Physical cables that are cut or disconnected occur on Layer 1, the Physical layer.
+A code injection was submitted from an administrative website, and it's possible that an attacker can now see unauthorized directories from your Linux server.
+Solution: Attacks that occur directly on the web application occur on Layer 7, the Application layer.
+The MAC address of one of your network interface cards was spoofed and is preventing some traffic from reaching its destination.
+Solution: Issues or attacks on the MAC address occur on Layer 2, the Data Link layer.
+Your encrypted web traffic is using a weak encryption cipher, and the web traffic is now vulnerable to decryption.
+Solution: Encryption occurs on Layer 6, the Presentation layer.
+The destination IP address was modified, and traffic is being routed to an unauthorized location.
+Solution: IP addresses and IP address routing occur on Layer 3, the Network layer.
+A flood of TCP requests is causing performance issues.
+Solution: TCP and source and destination protocols occur on Layer 4, the Transport layer.
+A SQL injection attack was detected by the SOC. This SQL injection may have deleted several database tables.
+Solution: Attacks occurring on the web application occur on Layer 7, the Application layer.
+A switch suddenly stopped working, and local machines aren't receiving any traffic.
+Solution: Switches use MAC addresses to route traffic, so this problem occurred on Layer 2, the Data Link layer.
+An ethernet cable was disconnected, and the machine connected isn't able to receive any external traffic.
+Solution: Physical cables that are cut or disconnected occur on Layer 1, the Physical layer.
+Traffic within the network is being directed from the switch to a suspicious device.
+Solution: Switches use MAC addresses to route traffic, so this problem occurred on Layer 2, the Data Link layer.
+
