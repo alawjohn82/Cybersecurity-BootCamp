@@ -163,3 +163,74 @@ Record and identify your findings (e.g., OSI layers, protocols, IP addresses, an
 
 hint
 Focus on the ARP and HTTP protocols. Recall the different types of HTTP request methods, and be sure to examine the contents of these packets thoroughly.
+
+
+
+Question 1
+12 / 12 pts
+What is the full command you used to ping the "Hollywood Web Server 2" machine?
+  ping 203.0.113.32 
+Correct, this pings the Hollywood Web Server 2 machine.
+  ping 200.0.113.31 
+  pinging 203.0.113.32 
+  ping 'Hollywood Web Server 2' 
+ 
+Question 2
+12 / 12 pts
+When performing "ping" commands, which OSI layer are you interacting with/using (one word)?
+  Physical 
+  Network 
+Correct, the network layer is used for "ping" commands.
+  Ping 
+  Presentation 
+ 
+Question 3
+16 / 16 pts
+What is unique about a SYN scan?
+  It is fast. 
+  It never completes the three-way handshake. 
+Correct, instead of completing the three-way handshake (which would happen in a full connection), the scanning computer responds to the SYN-ACK with a TCP packet with the RST flag set, effectively closing the connection attempt before it's fully established.
+  It can close open ports. 
+  It can open closed ports. 
+ 
+Question 4
+12 / 12 pts
+What is the nmap scan flag for a SYN scan? (e.g. nmap -XX)
+  nmap -SC 
+  nmap -yS 
+  nmap -SY 
+  nmap -sS 
+Correct. -sS tells nmap to perform a SYN scan.
+ 
+Question 5
+12 / 12 pts
+What port is open on the IP address you scanned via SYN scan? (Port number)
+  Port 443 
+  Port 80 
+  Port 22 
+Correct, port 22 commonly represents the port for SSH.
+  Port 79 
+ 
+Question 6
+12 / 12 pts
+What is the IP address you obtained through viewing the /etc/hosts file?
+  98.123.234.8 
+  98.137.246.8 
+That is correct. This IP address is actually registered to yahoo.com.
+  98.123.236.9 
+  98.137.234.8 
+ 
+Question 7
+12 / 12 pts
+What port has RockStar Corp left open?
+  Port 12 
+  Port 80 
+  Port 22 
+That is correct, RockStar Corp left port 22 (SSH) open.
+  Port 24 
+ 
+Question 8
+12 / 12 pts
+What is the hacker's device's MAC address?
+00:0c:29:1d:b3:b1
+Correct, they are creating a spoof record to direct the traffic intended for 92.168.47.200 over to their device.
