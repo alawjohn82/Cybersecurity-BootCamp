@@ -1,0 +1,27 @@
+For ARP
+Run the filter arp.opcode == 1 to show only the ARP requests.
+Run the filter arp.opcode == 2 to show only the ARP responses.
+
+
+The filters are based on the flag field set in the TCP header. For example:
+    To view only SYN requests with the SYN flag set to 1 and the ACK flag set to 0, run:
+        tcp.flags.syn ==1 && tcp.flags.ack == 0
+    To view only SYN/ACK responses with the SYN flag set to 1 and the ACK flag also set to 1, run:
+        tcp.flags.syn ==1 && tcp.flags.ack == 1
+    To view only ACK responses with the ACK flag set to 1 and the SYN flag set to 0, run:
+        tcp.flags.syn == 0 && tcp.flags.ack == 1
+
+
+To view TCP termination packets with the FIN flag set to 1, run:
+tcp.flags.fin == 1
+
+
+Wireshark can also easily distinguish between the client and server in these TCP handshakes:
+Remove all filters. The client IP is 10.0.2.15 and the server IP 93.184.216.34.
+    In the SYN request, the client IP is the source and the server IP is the destination.
+    In the SYN/ACK response, the client IP is the destination and the server IP is the source.
+    In the ACK response, the client IP is the source and the server IP is the destination.
+    To see the domain of the web server being accessed, you can select:
+        View > Name Resolution > Resolve Network Address
+    After this has been selected, the website being accessed is clearly shown as example.com.
+
