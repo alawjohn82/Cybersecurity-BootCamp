@@ -25,3 +25,10 @@ Remove all filters. The client IP is 10.0.2.15 and the server IP 93.184.216.34.
         View > Name Resolution > Resolve Network Address
     After this has been selected, the website being accessed is clearly shown as example.com.
 
+    To view specific DHCP steps:
+        DHCP Discover filter: dhcp.option.dhcp == 1
+        DHCP Offer filter: dhcp.option.dhcp == 2
+        DHCP Request filter: dhcp.option.dhcp == 3
+        DHCP ACK filter : dhcp.option.dhcp == 5
+        dhcp.option.dhcp == 4 is used for DHCP Decline. This is why DHCP ACK is dhcp.option.dhcp == 5.
+    
