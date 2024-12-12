@@ -1,0 +1,451 @@
+fr-
+
+Project 1 Scenario:
+
+
+Today, you will play the role of a security professional tasked with hardening a Linux server owned by The Baker Street Corporation (BSC). The BSC has confidential data on their server and they need you to confirm that their system is properly configured to protect them from security breaches. If you determine any security issues, they also want you to make the necessary updates.
+ 
+
+
+Today’s focus is on the BSC’s Linux server’s users, groups, files, and directories. You will be completing 5 steps:
+
+
+(1) Pre-hardening steps: System inventory and backup
+(2) Auditing users and groups
+(3) Updating and enforcing password policies
+(4) Updating and enforcing sudo permissions
+(5) Validating and updating permissions on files and directories.
+
+
+As you progress through the project, use the following Checklist and Summary Report to update your progress, document your commands, and add screenshots.. Note that on the third day of the project, you will reuse your commands to design a script.
+
+
+Resources:
+https://tuxcare.com/blog/linux-system-hardening-top-10-security-tips/
+https://www.pluralsight.com/blog/it-ops/linux-hardening-secure-server-checklist
+
+
+Instructions
+Day 1 Setup:
+
+To start and access the lab, from canvas select the weblab. 
+
+Open your terminal, and run the following  3 commands in red:
+
+To download the container: sudo docker pull cyberxsecurity/container_project1_v4:latest
+
+To start the container: sudo docker run -d  --hostname=Baker_Street_Linux_Server --network=host --name project1_v4 cyberxsecurity/container_project1_v4:latest
+
+To connect to the container: sudo docker exec -it project1_v4 /bin/bash
+
+
+This will install, configure, and connect you to your lab.
+Note that this process may take between 5 - 10 minutes to complete!
+
+See below for a screenshot of a successful installation and login.
+
+
+
+
+
+—--------------------------------------------------------------------------------------------------------------------
+
+
+Note: If you exit the lab, to return to the lab, run command number 3 from above to reconnect:
+
+To connect to the container: docker exec -it project1_v4 /bin/bash
+
+
+       
+
+
+Part 1: Pre-Hardening Steps
+
+In Part 1, before you start hardening the Linux Server, it is imperative that you document details about the operating system you are hardening and create a backup of the important files on the OS in case there is an issue during the hardening process. You will need to research any commands you aren’t familiar with.
+
+
+
+
+
+
+Complete the following:
+Collect and document the following information on the summary report.
+Be sure to research the commands to complete these tasks!
+HostName
+OS version
+Memory information
+Uptime information
+
+Now backup the OS with the following command(note the directories being excluded):
+sudo tar -cvpzf /baker_street_backup.tar.gz --exclude=/baker_street_backup.tar.gz --exclude=/proc --exclude=/tmp --exclude=/mnt --exclude=/sys --exclude=/dev --exclude=/run /
+Be sure to note on your checklist what you have completed.
+Don’t forget to add screenshots!
+
+Part 2: Auditing Users and Groups
+
+In Part 2, you are tasked with auditing BSC’s employees to make sure all of the correct users and groups have the minimum required access to do their work.
+
+
+Note the current staff list and position updates:
+
+
+Employee Name
+Employment Status
+1
+sherlock
+Employed
+2
+watson
+Employed
+3
+mycroft
+Employed
+4
+moriarty
+On temporary leave
+5
+lestrade
+Terminated
+6
+irene
+Terminated
+7
+mrs_hudson
+On temporary leave
+8
+mary
+Terminated
+9
+gregson
+Terminated
+10
+toby
+Employed
+11
+adler
+Employed
+
+
+
+Complete the following:
+Remove all staff who have been terminated.
+Be sure to remove all home directories and files.
+Lock all user accounts of staff on temporary leave.
+Unlock any users who are employed.
+Move all the employees who were in the marketing department to a new group called research. Create this group if it doesn't exist.
+Remove the marketing group as the marketing department was closed this year.
+Be sure to note on your checklist what you have completed.
+Don’t forget to add in your screenshots.
+
+
+
+Part 3:  Updating and Enforcing Password Policies
+
+In Part 3, you are tasked with validating the security of the passwords of BSC’s  employees. Additionally, you will update the minimum complexity and force users to update their passwords on their next login.
+
+Complete the following:
+Update the password requirements for all users to have:
+Minimum 8 characters
+At least one special character
+Allow 2 retries
+At least one uppercase character
+To make this update:
+Edit the following file: /etc/pam.d/common-password 
+Add settings to the following line: 
+password requisite pam_pwquality.so
+Here are the available settings:
+minlen: Minimum length of the password.
+dcredit: Number of digits required (negative value means at least that many).
+ucredit: Number of uppercase characters required (negative value means at least that many).
+lcredit: Number of lowercase characters required (negative value means at least that many).
+ocredit: Number of special characters required (negative value means at least that many).
+retry: Number of times to retry if the user enters a bad password.
+Here is an example line if the minimum length was 12, and number of retries is 3: 
+password requisite pam_pwquality.so retry=3 minlen=12
+Be sure to note on your checklist what you have completed.
+Don’t forget to add in screenshots!
+
+
+Part 4: Updating and Enforcing sudo Permissions
+
+In Part 4, you are tasked with validating and updating the sudo file. BSC only wants a small group to be able to use sudo, and for those who have sudo, the only privileges they should have are to complete very specific tasks.
+
+Complete the following:
+
+The only employee who should have full sudo privileges is Sherlock. Remove all other full privileged users.
+Watson and Mycroft should only have sudo privileges to run a script located here:
+/var/log/logcleanup.sh
+All employees who belong to the research group should have sudo privileges to run the following script:
+/tmp/scripts/research_script.sh
+Be sure to note on your checklist what you have completed.
+Don’t forget to add in your screenshots!
+
+
+Part 5: Validating and Updating Permissions on Files and Directories
+
+
+In Part 5, you are tasked with validating and updating any files and directories that have weak security permissions.
+
+Complete the following:
+
+In every user’s home directory, there should be no files that have any world permissions to read, write, or execute.
+Find any of them and update to remove the world permissions.
+Find the following files and make the associated updates: 
+(Hint: Search with the case-insensitive option.)
+Engineering scripts (scripts with the word ‘engineering’ in the filename): Only members of the engineering group can view, edit, or execute.
+Research scripts: Only members of the research group can view, edit, or execute.
+Finance scripts: Only members of the finance group can view, edit, or execute.
+Some employees may leave files with hidden passwords. Find those files and remove them as no employee should have their passwords stored on the server.
+Exit the lab by entering:
+exit
+Be sure to note on your checklist what you have completed.
+Don’t forget to add in your screenshots!
+
+
+
+
+Project 1 Day 2 Scenario:
+
+
+Today, you will continue to play the role of a security professional tasked with auditing and hardening a Linux server owned by BSC.
+
+
+Today’s focus is on BSC’s Linux server’s SSH settings, system packages, services, and logging configurations:
+
+
+(1) Auditing and securing SSH
+(2) Reviewing and updating system packages
+(3) Disabling unnecessary services
+(4) Enabling and configuring logging
+
+
+
+
+Instructions
+
+Lab access:
+
+Please return to your same lab used in the previous class
+
+To return to the lab, run the following command to reconnect:
+
+To connect to the container: sudo docker exec -it project1_v4 /bin/bash
+
+If the lab doesn’t connect, run the following 2 commands:
+
+To start the container: sudo docker start project1_v4 
+
+To connect to the container: sudo docker exec -it project1_v4 /bin/bash
+If the lab doesn’start, you can rebuild the lab with the following 2 commands:
+
+To start the container: sudo docker run -d  --hostname=Baker_Street_Linux_Server --network=host --name project1_v4 cyberxsecurity/container_project1_v4:latest
+
+To connect to the container: sudo docker exec -it project1_v4 /bin/bash
+
+Part 1: Auditing and Securing SSH
+
+In Part 1 of today’s activity, you will be hardening the SSH setting for BSC’s Linux server. As SSH is a common method attackers use to breach remote Linux servers, it is important to harden SSH with strict controls. 
+
+Use the following SSH configuration manual to assist with your tasks: sshd_config(5): OpenSSH SSH daemon config file - Linux man page
+
+
+Complete the following:
+
+Configure SSH to not allow the ability to:
+SSH with empty passwords
+SSH with the root user
+SSH with any other ports besides 22
+Enable SSH protocol 2.
+Restart the SSH service to set your updates
+Use the following command: `service ssh restart`
+Be sure to note on your checklist what you have completed.
+Don’t forget to add in your screenshots!
+
+
+Part 2:  Review, Update, and Add System Packages
+
+In Part 2, you will be reviewing and updating your system packages.  This is important because app developers often release patches to protect from security vulnerabilities. Having the latest version of your packages minimizes your security risks.
+
+Complete the following:
+Run apt update to update your package manager to make sure it has the latest version of all packages.
+Next, run apt upgrade -y to update all already installed packages to the latest versions.
+Create a file called package_list.txt, which contains all installed packages.
+Hint: To view installed packages, run the following: apt list --installed.
+Identify if any of the following packages are on the list as having these could introduce a security issue:
+telnet
+rsh-client
+If they are on the list, remove those packages.
+Research and note why these could have security issues.
+Remove all unnecessary dependencies of those packages with apt autoremove -y.
+Add the following packages:
+ufw
+lynis
+tripwire
+Once the packages have been installed, research and document the hardening features these packages can provide.
+Be sure to note on your checklist what you have completed.
+Don't forget to add in your screenshots!
+
+	
+
+Part 3: Disabling Unnecessary Services
+
+In Part 3, you will be reviewing and disabling any unnecessary services. This is important because having unnecessary services running increases your attack surface. Follow the below steps to identify and remove any unnecessary services.
+
+Complete the following:
+  (Hint: View Lesson 4.3 to assist with the commands.)
+Run the command to list out all services. Output this into a file called service_list.txt.
+Identify if any of the following services are running:
+mysql
+samba
+If any of the above services are running,
+Stop them
+Disable them
+Remove them 
+For Step 2&3, use the `service` command, as systemctl is not installed.
+Be sure to note on your checklist what you have completed.
+	
+
+Part 4: Enabling and Configuring Logging
+
+In Part 4, you will be configuring and checking logging settings on Baker Street’s Linux server. Logging is a crucial part of the hardening process as logging can help identify security issues such as suspicious network activity, unauthorized access, or other anomalous activity.
+
+Complete the following:
+Access the journald.conf file located /etc/systemd/.
+Use nano to edit the following settings in the file. Be sure to uncomment the lines!
+Set “storage=persistent”
+This setting will save the logs locally on the machine.
+Set “systemMaxUse=300M”
+This setting configures the maximum disk space the logs can utilize.
+To prevent logs from taking up too much space, you will need to configure log rotation.
+  (Use the following guide to assist: https://linux.die.net/man/8/logrotate) 
+Edit the file: /etc/logrotate.conf with the following settings:
+Change the log rotation from weekly to daily.
+Rotate out the logs after 7 days.
+Save your changes
+Be sure to note on your checklist what you have completed.
+Exit the lab by entering:
+exit
+
+
+
+
+
+
+
+Project 1 Day 3 Scenario:
+
+
+Today you will conclude your hardening tasks by scripting and scheduling the tasks you completed on Day 1 & 2.
+
+
+Today’s focus is on 
+
+
+(1) Scripting your hardening tasks
+(2) Scheduling your hardening scripts
+(3) Completing the summary report
+
+
+
+
+
+
+
+
+Instructions
+
+Lab access:
+
+Please return to your same lab used in the previous class
+
+To return to the lab, run the following command to reconnect:
+
+To connect to the container: sudo docker exec -it project1_v4 /bin/bash
+
+If the lab doesn’t connect, run the following 2 commands:
+
+To start the container: sudo docker start project1_v4 
+
+To connect to the container: sudo docker exec -it project1_v4 /bin/bash
+If the lab doesn’start, you can rebuild the lab with the following 2 commands:
+
+To rebuild and start the container: sudo docker run -d  --hostname=Baker_Street_Linux_Server --network=host --name project1_v4 cyberxsecurity/container_project1_v4:latest
+
+To connect to the container: sudo docker exec -it project1_v4 /bin/bash
+
+Part 1: Scripting your hardening tasks
+
+Over the last 2 class days you have done great work hardening and auditing BSC’s environment. While you have protected BSC’s linux server, you have done each part, one step at a time.  In Part 1 of today’s activities, you will build out 2 scripts to automate many of the tasks you completed over the last two days. The first script will be for the first day’s tasks, and the second day will cover the second day’s tasks. Additionally,  you have been provided with script templates to guide you through the script development process. Once you have built out your scripts, test them out to confirm there are no errors.
+
+
+
+
+
+
+
+Complete the following steps:
+Script 1:
+View and copy the following script 1 template , update the script everywhere you see placeholders in red.   Be sure to remove all the placeholders!
+Copy the script into a file called hardening_script1.sh   
+Update the permissions and run it to validate there are no errors.
+
+Script 2
+View and copy the following script 2 template , update the script everywhere you see placeholders in red.   Be sure to remove all the placeholders!
+Copy the script into a file called hardening_script2.sh   
+Update the permissions and run it to validate there are no errors.
+
+Be sure to note on your checklist what you have completed
+
+
+
+
+Part 2:  Scheduling your hardening scripts
+
+In Part 2 of today’s activity, you will use cron to schedule the 2 scripts you just created.
+
+Complete the following:
+Using cron, schedule script 1 to run Once a month on the first of the month
+Using cron, schedule script 2 to run Once a week every Monday
+
+Be sure to note on your checklist what you have completed
+
+
+
+
+
+
+
+Part 3: Completing your summary report
+
+
+For the final activity of your project, you are tasked with completing your summary report.  
+
+Complete the following:
+From your summary report, check off all completed tasks
+Summarize your findings of your security concerns at the conclusion of the report.
+Submit your project report in bootcampspot.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
