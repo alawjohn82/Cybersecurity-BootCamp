@@ -19,4 +19,4 @@ This boot camp is divided into six units that cover basic and advanced topics re
     Learn about SIEM with Splunk. Set up security monitoring, alerts, dashboards, and custom reports. Use forensic tools to recover deleted data.
 
 6	Review, Prep, and Final :
-    Project	Complete certification prep and review security from an organizational perspective via governance, risk, and compliance. Understand how security controls impact an organization and its employees. Complete interviewing and career prep practice. 
+    Project	Complete certification prep and review security from an organizational perspective via governance, risk, and compliance. Understand how security controls impact an organization and its employees. Complete interviewing and career prep practice.  
